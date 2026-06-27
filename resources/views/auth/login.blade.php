@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="min-h-screen flex items-center justify-center bg-cover bg-center relative" 
-     style="background-image: url('{{ asset('loginbg.png') }}');">
+     style="background-image: url('{{ asset('images/loginbg.png') }}');">
     
     <!-- Overlay for better readability -->
     <div class="absolute inset-0 bg-gradient-to-r from-green-900/70 to-transparent"></div>
@@ -87,4 +87,27 @@
 
                     <button type="submit"
                             class="w-full bg-green-600 hover:bg-green-700 transition-colors text-white font-semibold py-4 rounded-2xl flex items-center justify-center gap-2 text-lg">
-                        <span
+                        <span>🐾</span>
+                        Login
+                    </button>
+
+                    @if ($errors->any())
+                        <div class="mt-6 bg-red-50 border border-red-200 text-red-700 p-4 rounded-2xl text-sm">
+                            <ul class="list-disc list-inside">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </form>
+            </div>
+
+            <!-- Footer -->
+            <div class="bg-green-50 py-4 px-10 text-center text-sm text-green-700 border-t">
+                Secure • Reliable • Compassionate
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
