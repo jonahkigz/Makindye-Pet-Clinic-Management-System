@@ -1,59 +1,406 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🐾 Makindye Pet Clinic Management System (MPCMS)
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <h3 align="center">Petcare, Our Priority.</h3>
+  <p align="center">
+    <strong>Healthier Pets, Happier Families.</strong>
+  </p>
 </p>
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📖 Overview
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The **Makindye Pet Clinic Management System (MPCMS)** is a modern, web-based Veterinary Clinic Management System developed using **Laravel 12**. The system digitizes veterinary clinic operations by providing secure management of pets, pet owners, appointments, medical records, inventory, billing, payments, and reports through an intuitive enterprise-grade interface.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Designed with an eco-friendly aesthetic and Role-Based Access Control (RBAC), MPCMS improves operational efficiency while delivering a seamless user experience for veterinary professionals and pet owners.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+# ✨ Key Features
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🔐 Authentication
 
-## Laravel Sponsors
+- Secure Login & Logout
+- Password Encryption
+- Session Management
+- Form Validation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 👥 Role-Based Access Control (RBAC)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+The system supports four user roles:
 
-## Contributing
+- 👑 Administrator
+- 👨‍⚕️ Veterinarian
+- 🧑‍💼 Receptionist
+- 🐶 Pet Owner
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Each role has customized dashboards, permissions, and accessible modules.
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 📊 Dashboard
 
-## Security Vulnerabilities
+- Real-time Statistics
+- Appointment Overview
+- Revenue Analytics
+- Registered Pets
+- Registered Owners
+- Low Stock Alerts
+- Activity Timeline
+- Interactive Charts
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 👤 User Management
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Administrators can:
+
+- Create Users
+- View Users
+- Edit Users
+- Delete Users
+- Assign Roles
+
+---
+
+## 🐾 Pet Owner Management
+
+- Register Owners
+- Update Owner Profiles
+- Search Owners
+- View Owner History
+
+---
+
+## 🐕 Pet Management
+
+- Register Pets
+- Breed Information
+- Species
+- Medical History
+- Vaccination Records
+- Owner Assignment
+
+---
+
+## 📅 Appointment Management
+
+- Schedule Appointments
+- Appointment Calendar
+- Consultation Tracking
+- Appointment Status
+- Appointment History
+
+---
+
+## 🩺 Medical Records
+
+- Symptoms
+- Diagnosis
+- Treatment
+- Prescriptions
+- Consultation Notes
+- Vaccination Records
+
+---
+
+## 💳 Billing & Payments
+
+- Invoice Generation
+- Payment Recording
+- Outstanding Balances
+- Payment History
+
+---
+
+## 💊 Inventory Management
+
+- Medicines
+- Products
+- Services
+- Stock Monitoring
+- Low Stock Notifications
+
+---
+
+## 📈 Reports
+
+Generate reports for:
+
+- Clinic Operations
+- Revenue
+- Inventory
+- Users
+- Pets
+- Appointments
+- Medical Records
+
+---
+
+# 🛠 Technology Stack
+
+## Backend
+
+- Laravel 12
+- PHP 8.2
+- MySQL
+- Eloquent ORM
+
+## Frontend
+
+- Blade Templates
+- Tailwind CSS
+- JavaScript
+- Vite
+
+## Libraries
+
+- Chart.js
+- Laravel Authentication
+- Laravel Validation
+
+---
+
+# 🎨 UI Design
+
+MPCMS follows a modern SaaS-inspired interface featuring:
+
+- Eco-friendly color palette
+- Glassmorphism-inspired cards
+- Responsive layouts
+- Smooth animations
+- Modern typography
+- Professional dashboard
+- Mobile-friendly design
+
+Primary Colors
+
+- 🌿 Emerald Green
+- 🌲 Forest Green
+- 🤍 Cream White
+- 🌱 Soft Beige
+
+---
+
+# 🔒 Security
+
+- Password Hashing
+- CSRF Protection
+- Route Middleware
+- Authentication
+- RBAC
+- SQL Injection Prevention
+- XSS Protection
+- Request Validation
+
+---
+
+# 📂 Project Structure
+
+```text
+app/
+bootstrap/
+config/
+database/
+public/
+resources/
+routes/
+storage/
+tests/
+```
+
+---
+
+# 🚀 Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/jonahkigz/mpcms.git
+```
+
+Navigate into the project
+
+```bash
+cd mpcms
+```
+
+Install PHP dependencies
+
+```bash
+composer install
+```
+
+Install JavaScript dependencies
+
+```bash
+npm install
+```
+
+Copy environment file
+
+```bash
+cp .env.example .env
+```
+
+Generate application key
+
+```bash
+php artisan key:generate
+```
+
+Configure your database credentials in `.env`
+
+Run migrations
+
+```bash
+php artisan migrate
+```
+
+(Optional)
+
+```bash
+php artisan db:seed
+```
+
+Compile frontend assets
+
+```bash
+npm run dev
+```
+
+Start the application
+
+```bash
+php artisan serve
+```
+
+Visit
+
+```
+http://127.0.0.1:8000
+```
+
+---
+
+# 👥 User Roles
+
+## 👑 Administrator
+
+- Full System Access
+- User Management
+- Reports
+- Inventory
+- Billing
+- System Configuration
+
+---
+
+## 👨‍⚕️ Veterinarian
+
+- Medical Records
+- Appointments
+- Consultations
+- Pet Management
+
+---
+
+## 🧑‍💼 Receptionist
+
+- Register Owners
+- Register Pets
+- Book Appointments
+- Billing
+- Payments
+
+---
+
+## 🐶 Pet Owner
+
+- View Personal Pets
+- View Medical History
+- View Appointments
+- View Invoices
+
+---
+
+# 📸 Screenshots
+
+> Screenshots will be added as development progresses.
+
+- Login Page
+- Administrator Dashboard
+- User Management
+- Pet Management
+- Appointment Scheduling
+- Medical Records
+- Inventory
+- Billing
+- Reports
+
+---
+
+# 🔮 Future Enhancements
+
+- SMS Notifications
+- Email Notifications
+- QR Code Pet Identification
+- AI-assisted Diagnosis
+- Online Appointment Booking
+- Online Payments
+- REST API
+- Mobile Application
+- Cloud Deployment
+- Multi-Clinic Support
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+1. Fork the repository
+2. Create your feature branch
+
+```bash
+git checkout -b feature/NewFeature
+```
+
+3. Commit your changes
+
+```bash
+git commit -m "Add New Feature"
+```
+
+4. Push the branch
+
+```bash
+git push origin feature/NewFeature
+```
+
+5. Open a Pull Request
+
+---
+
+# 📄 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+# 👨‍💻 Developer
+
+**Jonathan Kigozi**
+
+GitHub: https://github.com/jonahkigz
+
+---
+
+<p align="center">
+Made with ❤️ using Laravel 12
+<br>
+Makindye Pet Clinic Management System (MPCMS)
+</p>
