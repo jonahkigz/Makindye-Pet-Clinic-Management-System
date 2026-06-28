@@ -1,3 +1,8 @@
+/* Tailwind Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Global Reset & Scaling Fix */
 html {
     font-size: 16px;
@@ -15,4 +20,9 @@ body {
 *::before,
 *::after {
     box-sizing: border-box;
+}
+
+/* Optional: Better spacing */
+main {
+    max-width: 100%;
 }
