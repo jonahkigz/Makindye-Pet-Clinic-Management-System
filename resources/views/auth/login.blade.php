@@ -89,7 +89,7 @@
 
                     <button type="submit"
                             class="w-full bg-green-900 hover:bg-green-950 transition-colors text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 text-lg">
-                        Login
+                        LogIn
                     </button>
 
                     @if ($errors->any())
