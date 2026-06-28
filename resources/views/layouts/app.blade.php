@@ -8,7 +8,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gray-100 antialiased">
 
     <div class="flex min-h-screen">
 
@@ -21,7 +21,7 @@
             @include('layouts.navigation')
 
             {{-- Page Content --}}
-            <main class="p-6">
+            <main class="flex-1 p-6 overflow-auto">
                 @yield('content')
             </main>
 
