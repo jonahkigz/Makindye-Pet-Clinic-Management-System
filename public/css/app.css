@@ -26,3 +26,13 @@ body {
 main {
     max-width: 100%;
 }
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+    
+    .login-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+}
