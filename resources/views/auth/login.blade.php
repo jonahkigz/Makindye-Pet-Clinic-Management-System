@@ -1,3 +1,4 @@
+```html
 @extends('layouts.guest')
 
 @section('content')
@@ -14,7 +15,7 @@
         <div class="hidden md:flex flex-col justify-center text-white space-y-6 pr-12">
             <div class="flex items-center gap-3">
                 <div>
-                    <span class="text-4xl"></span>
+                    <span class="text-4xl"></span> <!-- Replace with your logo SVG if available -->
                 </div>
                 <div>
                     <h1 class="text-5xl font-bold tracking-tight"></h1>
@@ -38,16 +39,18 @@
 
         <!-- Right Side - Login Form -->
         <div class="max-w-md w-full mx-auto bg-white/75 rounded-3xl shadow-2xl overflow-hidden">
-            <div class="p-8 md:p-10">   <!-- Reduced padding for mobile -->
-
+            <div class="p-10">
                 <!-- Logo / Header -->
                 <div class="flex justify-center mb-6">
-                    <div>
-                        <span class="text-8xl">🐾</span>
+                    <div class="w-20 h-20 bg-#F2E6CF  rounded-full flex items-center justify-center shadow-inner">
+                        <div class="w-20 h-20 bg-#F2E6CF rounded-full flex items-center justify-center">
+                    <span class="text-8xl">🐾</span> <!-- Replace with your logo SVG if available -->
+                         </div>
+                        
                     </div>
                 </div>
 
-                <h1 class="text-center text-3xl font-bold text-gray-800 mb-1">Welcome</h1>
+                <h1 class="text-center text-3xl font-bold size-25 text-gray-800 mb-1">Welcome</h1>
                 <p class="text-center text-gray-600 mb-8">Sign in to continue to your dashboard</p>
 
                 <form method="POST" action="{{ route('login') }}">
@@ -88,8 +91,9 @@
                     </div>
 
                     <button type="submit"
-                            class="w-full bg-green-900 hover:bg-green-950 transition-colors text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 text-lg">
-                        LogIn
+                            class="w-full bg-green-900 hover:bg-green-950 transition-colors text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 text-1g">
+                        <span>🐾</span>
+                        Login
                     </button>
 
                     @if ($errors->any())
@@ -109,6 +113,7 @@
                 Secure • Reliable • Compassionate
             </div>
         </div>
-    </div>
-</div>
+    </li>
+</>
 @endsection
+```
