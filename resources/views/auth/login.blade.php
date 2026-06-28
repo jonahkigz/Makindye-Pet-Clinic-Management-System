@@ -3,6 +3,7 @@
 @section('content')
 <div class="min-h-screen flex items-center justify-center bg-cover bg-center relative" 
      style="background-image: url('{{ asset('images/loginbg.png') }}');">
+
     
     <!-- Overlay for better readability -->
     <div class="absolute inset-0 bg-gradient-to-r from-green-900/70 to-transparent"></div>
@@ -12,40 +13,43 @@
         <!-- Left Side - Branding -->
         <div class="hidden md:flex flex-col justify-center text-white space-y-6 pr-12">
             <div class="flex items-center gap-3">
-                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                    <span class="text-4xl">🐾</span> <!-- Replace with your logo SVG if available -->
+                <div>
+                    <span class="text-4xl"></span> <!-- Replace with your logo SVG if available -->
                 </div>
                 <div>
-                    <h1 class="text-5xl font-bold tracking-tight">MPCMS</h1>
-                    <p class="text-xl">Makindye Pet Clinic Management System</p>
+                    <h1 class="text-5xl font-bold tracking-tight"></h1>
+                    <p class="text-xl"></p>
                 </div>
             </div>
 
             <div class="space-y-4">
-                <p class="text-2xl font-medium">"Petcare, Our Priority"</p>
-                <p class="text-lg opacity-90">Healthier Pets, Happier Families</p>
+                <p class="text-2xl font-medium"></p>
+                <p class="text-lg opacity-90"></p>
             </div>
 
             <!-- Pet Images Row -->
             <div class="flex gap-4 pt-8">
-                <img src="{{ asset('images/cat.png') }}" alt="Cat" class="w-32 h-32 object-cover rounded-2xl shadow-xl">
-                <img src="{{ asset('images/small-dog.png') }}" alt="Small Dog" class="w-32 h-32 object-cover rounded-2xl shadow-xl -mt-6">
-                <img src="{{ asset('images/golden-retriever.png') }}" alt="Golden Retriever" class="w-40 h-40 object-cover rounded-2xl shadow-xl">
-                <img src="{{ asset('images/rabbit.png') }}" alt="Rabbit" class="w-28 h-28 object-cover rounded-2xl shadow-xl mt-8">
+                <div src="" class="w-32 h-32 object-cover rounded-2xl shadow-xl"></div>
+                <div src="{{ asset('images/small-dog.png') }}"  class="w-32 h-32 object-cover rounded-2xl shadow-xl -mt-6"></div>
+                <div src="{{ asset('images/golden-retriever.png') }}" class="w-40 h-40 object-cover rounded-2xl shadow-xl"></div>
+                <div src="{{ asset('images/rabbit.png') }}" class="w-28 h-28 object-cover rounded-2xl shadow-xl mt-8"></div>
             </div>
-        </div>
+            </div>
 
         <!-- Right Side - Login Form -->
-        <div class="max-w-md w-full mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+        <div class="max-w-md w-full mx-auto bg-white/75 rounded-3xl shadow-2xl overflow-hidden">
             <div class="p-10">
                 <!-- Logo / Header -->
                 <div class="flex justify-center mb-6">
-                    <div class="w-20 h-20 bg-green-600 rounded-2xl flex items-center justify-center shadow-inner">
-                        <span class="text-5xl">🐾</span>
+                    <div class="w-20 h-20 bg-#F2E6CF  rounded-full flex items-center justify-center shadow-inner">
+                        <div class="w-20 h-20 bg-#F2E6CF rounded-full flex items-center justify-center">
+                    <span class="text-8xl">🐾</span> <!-- Replace with your logo SVG if available -->
+                         </div>
+                        
                     </div>
                 </div>
 
-                <h2 class="text-center text-3xl font-semibold text-gray-800 mb-1">Welcome Back</h2>
+                <h1 class="text-center text-3xl font-bold size-25 text-gray-800 mb-1">Welcome</h1>
                 <p class="text-center text-gray-600 mb-8">Sign in to continue to your dashboard</p>
 
                 <form method="POST" action="{{ route('login') }}">
@@ -86,7 +90,7 @@
                     </div>
 
                     <button type="submit"
-                            class="w-full bg-green-600 hover:bg-green-700 transition-colors text-white font-semibold py-4 rounded-2xl flex items-center justify-center gap-2 text-lg">
+                            class="w-full bg-green-900 hover:bg-green-950 transition-colors text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 text-1g">
                         <span>🐾</span>
                         Login
                     </button>
@@ -108,6 +112,6 @@
                 Secure • Reliable • Compassionate
             </div>
         </div>
-    </div>
-</div>
+    </li>
+</>
 @endsection
