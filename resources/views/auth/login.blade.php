@@ -1,4 +1,3 @@
-```html
 @extends('layouts.guest')
 
 @section('content')
@@ -92,8 +91,7 @@
 
                     <button type="submit"
                             class="w-full bg-green-900 hover:bg-green-950 transition-colors text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 text-1g">
-                        <span>🐾</span>
-                        Login
+                        LogIn
                     </button>
 
                     @if ($errors->any())
@@ -116,4 +114,3 @@
     </li>
 </>
 @endsection
-```
