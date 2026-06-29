@@ -13,9 +13,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserManagementController;
-
-
-
+use App\Http\Controllers\UserController;
 
 
 
@@ -31,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth'])
     ->name('dashboard');
+
 
 Route::middleware(['auth'])->group(function () {
 Route::resource('owners', OwnerController::class);
@@ -50,8 +49,19 @@ Route::get('/reports', [ReportController::class, 'index'])->name('reports.index'
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('users', UserManagementController::class);
+    Route::middleware(['auth', 'role:Administrator'])->group(function () {
+    Route::resource('users', UserController::class);
 });
+});
+Route::middleware(['auth'])->group(function () {
 
+    Route::get('/users', [UserManagementController::class, 'index'])
+        ->name('users.index');
+
+});
+Route::middleware(['auth'])->group(function () {
+    Route::resource('users', UserManagementController::class);
+});
 
 });
 
