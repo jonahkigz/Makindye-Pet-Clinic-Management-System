@@ -65,7 +65,7 @@ class DashboardController extends Controller
                     'total_revenue' => Payment::sum('amount'),
                 ],
 
-                'appointments' => Appointment::with(['owner', 'pet'])
+                'appointments' => recentAppointment::with(['owner', 'pet'])
                     ->latest()
                     ->take(5)
                     ->get(),
