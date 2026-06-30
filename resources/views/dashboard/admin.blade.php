@@ -1,11 +1,4 @@
 @extends('layouts.app')
-@php
-    $appointments = $appointments ?? collect();
-    $stats = $stats ?? [];
-    $months = $months ?? [];
-    $revenueData = $revenueData ?? [];
-    $appointmentData = $appointmentData ?? [];
-@endphp
 @section('content')
 
 
