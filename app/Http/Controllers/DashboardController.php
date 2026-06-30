@@ -53,32 +53,32 @@ class DashboardController extends Controller
 
             return view('dashboard.admin', array_merge($baseData, [
 
-                'stats' => [
-                    'today_appointments' => Appointment::whereDate($dateField, today())->count(),
-                    'registered_pets' => Pet::count(),
-                    'owners' => Owner::count(),
-                    'users' => User::count(),
-                    'medical_records' => MedicalRecord::count(),
-                    'products' => Product::count(),
-                    'low_stock' => Product::whereColumn('quantity', '<=', 'reorder_level')->count(),
-                    'monthly_revenue' => Payment::whereMonth('created_at', now()->month)->sum('amount'),
-                    'total_revenue' => Payment::sum('amount'),
-                ],
+    'stats' => [
+        'today_appointments' => Appointment::whereDate($dateField, today())->count(),
+        'registered_pets' => Pet::count(),
+        'owners' => Owner::count(),
+        'users' => User::count(),
+        'medical_records' => MedicalRecord::count(),
+        'products' => Product::count(),
+        'low_stock' => Product::whereColumn('quantity', '<=', 'reorder_level')->count(),
+        'monthly_revenue' => Payment::whereMonth('created_at', now()->month)->sum('amount'),
+        'total_revenue' => Payment::sum('amount'),
+    ],
 
-                'appointments' => Appointment::with(['owner', 'pet'])
-                    ->latest()
-                    ->take(5)
-                    ->get(),
+    'recentAppointments' => Appointment::with(['owner', 'pet'])
+        ->latest()
+        ->take(5)
+        ->get(),
 
-                'payments' => Payment::with(['invoice.owner'])
-                    ->latest()
-                    ->take(5)
-                    ->get(),
+    'payments' => Payment::with(['invoice.owner'])
+        ->latest()
+        ->take(5)
+        ->get(),
 
-                'months' => $months,
-                'revenueData' => $revenueData,
-                'appointmentData' => $appointmentData,
-            ]));
+    'months' => $months,
+    'revenueData' => $revenueData,
+    'appointmentData' => $appointmentData,
+]));
         }
 
         /*
