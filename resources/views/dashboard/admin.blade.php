@@ -96,7 +96,7 @@
 
             <div class="space-y-3">
 
-                @forelse($recentAppointments as $appointment)
+                @forelse($appointments as $appointment)
                     <div class="border p-3 rounded">
                         <p class="font-bold">
                             {{ $appointment->pet->name ?? 'Pet' }}
