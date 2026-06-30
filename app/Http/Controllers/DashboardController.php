@@ -78,7 +78,9 @@ class DashboardController extends Controller
     'months' => $months,
     'revenueData' => $revenueData,
     'appointmentData' => $appointmentData,
+    
 ]));
+return view('dashboard.admin', compact('appointments'));
         }
 
         /*

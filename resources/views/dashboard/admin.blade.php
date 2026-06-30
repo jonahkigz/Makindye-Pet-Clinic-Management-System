@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content')
+@forelse($appointments ?? [] as $appointment)
+    ...
+@empty
+    <p>No appointments found</p>
+@endforelse
 
 
 
