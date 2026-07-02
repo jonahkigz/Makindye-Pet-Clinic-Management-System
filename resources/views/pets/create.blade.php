@@ -32,7 +32,7 @@
         </div>
 
         <div>
-            <label class="block mb-1">Color</label>
+            <label class="block mb-1">Species/Color</label>
             <input name="color" class="w-full border rounded p-2">
         </div>
 
