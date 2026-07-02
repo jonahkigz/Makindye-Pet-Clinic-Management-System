@@ -19,7 +19,7 @@
         </div>
     </div>
 
-<nav class="mt-6 px-4 space-y-2 bg-[#14532D]">
+<nav class="mt-6 px-4 space-y-2 bg-[#OF766E]">
 
     {{-- DASHBOARD (ALL ROLES) --}}
     <a href="{{ route('dashboard') }}"
