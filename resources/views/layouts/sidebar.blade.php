@@ -36,6 +36,11 @@
             <span class="text-xl">👥</span>
             <span class="ml-4">User Management</span>
         </a>
+     <a href="{{ route('pets.index') }}"
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+            <span class="text-xl">🐾</span>
+            <span class="ml-4">Pets</span>
+        </a>
 
         <a href="{{ route('reports.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
