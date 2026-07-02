@@ -23,7 +23,7 @@
 
     {{-- DASHBOARD (ALL ROLES) --}}
     <a href="{{ route('dashboard') }}"
-       class="group flex items-center px-4 py-3 rounded-xl bg-emerald-500 text-white  hover:bg-emerald-400 transition-all duration-300">
+       class="group flex items-center px-4 py-3 rounded-xl text-white  hover:bg-emerald-400 transition-all duration-300">
         <span class="text-xl">🏠</span>
         <span class="ml-4 font-medium">Dashboard</span>
     </a>
@@ -32,7 +32,7 @@
     @if($role === 'Administrator')
 
         <a href="{{ route('users.index') }}"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">👥</span>
             <span class="ml-4">User Management</span>
         </a>
@@ -42,37 +42,37 @@
             <span class="ml-4">Pet Owners</span>
         </a>
      <a href="{{ route('pets.index') }}"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🐾</span>
             <span class="ml-4">Pets</span>
         </a>
 
         <a href="{{ route('reports.index') }}"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">📊</span>
             <span class="ml-4">Clinic Reports</span>
         </a>
 
         <a href="{{ route('products.index') }}"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">💊</span>
             <span class="ml-4">Products</span>
         </a>
 
         <a href="{{ route('payments.index') }}"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">💳</span>
             <span class="ml-4">Payments</span>
         </a>
 
         <a href="{{ route('invoices.index') }}"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🧾</span>
             <span class="ml-4">Invoices</span>
         </a>
 
         <a href="{{ route('services.index') }}"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🛠</span>
             <span class="ml-4">Services</span>
         </a>
@@ -83,19 +83,19 @@
     @if($role === 'Veterinarian')
 
         <a href="{{ route('appointments.index') }}"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">📅</span>
             <span class="ml-4">My Appointments</span>
         </a>
 
         <a href="{{ route('medical-records.index') }}"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🩺</span>
             <span class="ml-4">Medical Records</span>
         </a>
 
         <a href="{{ route('pets.index') }}"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🐾</span>
             <span class="ml-4">Pets</span>
         </a>
@@ -106,25 +106,25 @@
     @if($role === 'Receptionist')
 
         <a href="{{ route('owners.index') }}"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">👨‍👩‍👧</span>
             <span class="ml-4">Pet Owners</span>
         </a>
 
         <a href="{{ route('pets.index') }}"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🐾</span>
             <span class="ml-4">Pets</span>
         </a>
 
         <a href="{{ route('appointments.index') }}"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">📅</span>
             <span class="ml-4">Appointments</span>
         </a>
 
         <a href="{{ route('invoices.index') }}"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🧾</span>
             <span class="ml-4">Invoices</span>
         </a>
@@ -135,19 +135,19 @@
     @if($role === 'Pet Owner')
 
         <a href="{{ route('pets.create') }}"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">➕</span>
             <span class="ml-4">Add Pet</span>
         </a>
 
         <a href="{{ route('appointments.create') }}"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">📅</span>
             <span class="ml-4">Book Appointment</span>
         </a>
 
         <a href="#"
-           class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🩺</span>
             <span class="ml-4">My Medical Records</span>
         </a>
@@ -156,7 +156,7 @@
 
     {{-- PROFILE (ALL ROLES) --}}
     <a href="#"
-       class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
+       class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
         <span class="text-xl">⚙️</span>
         <span class="ml-4">Profile</span>
     </a>
@@ -165,7 +165,7 @@
     <form method="POST" action="{{ route('logout') }}" class="pt-2">
         @csrf
         <button type="submit"
-                class="w-full group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300 text-left">
+                class="w-full group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300 text-left">
             <span class="text-xl">🚪</span>
             <span class="ml-4 font-semibold">Logout</span>
         </button>
