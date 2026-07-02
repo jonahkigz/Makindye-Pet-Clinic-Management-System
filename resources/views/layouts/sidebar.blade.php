@@ -23,7 +23,7 @@
 
     {{-- DASHBOARD (ALL ROLES) --}}
     <a href="{{ route('dashboard') }}"
-       class="group flex items-center px-4 py-3 rounded-xl bg-emerald-500 text-white shadow-lg hover:bg-emerald-400 transition-all duration-300">
+       class="group flex items-center px-4 py-3 rounded-xl bg-emerald-500 text-white  hover:bg-emerald-400 transition-all duration-300">
         <span class="text-xl">🏠</span>
         <span class="ml-4 font-medium">Dashboard</span>
     </a>
@@ -35,6 +35,11 @@
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">👥</span>
             <span class="ml-4">User Management</span>
+        </a>
+    <a href="{{ route('owners.index') }}"
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
+            <span class="text-xl">👨‍👩‍👧</span>
+            <span class="ml-4">Pet Owners</span>
         </a>
      <a href="{{ route('pets.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 hover:translate-x-2 transition-all duration-300">
