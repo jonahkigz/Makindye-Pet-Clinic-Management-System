@@ -23,7 +23,7 @@
 
     {{-- DASHBOARD (ALL ROLES) --}}
     <a href="{{ route('dashboard') }}"
-       class="group flex items-center px-4 py-3 rounded-xl text-white  hover:bg-emerald-400 transition-all duration-300">
+       class="group flex items-center px-4 py-3 rounded-xl  hover:bg-emerald-400 transition-all duration-300">
         <span class="text-xl">🏠</span>
         <span class="ml-4 font-medium">Dashboard</span>
     </a>
