@@ -19,13 +19,16 @@
         <option value="">Select Role</option>
 
         @foreach($roles as $role)
-            <option value="{{ $role }}"
-                {{ old('role', $user->role ?? '') == $role ? 'selected' : '' }}>
-                {{ $role }}
+            <option value="{{ $role->name }}"
+                {{ old('role', isset($user) ? $user->getRoleNames()->first() : '') == $role->name ? 'selected' : '' }}>
+                {{ $role->name }}
             </option>
         @endforeach
     </select>
-    @error('role') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+
+    @error('role')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+    @enderror
 </div>
 
 <div>
