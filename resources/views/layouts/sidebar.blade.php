@@ -34,47 +34,47 @@
         <a href="{{ route('users.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">👥</span>
-            <span class="ml-4">User Management</span>
+            <span class="ml-4 font-semibold">User Management</span>
         </a>
     <a href="{{ route('owners.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">👨‍👩‍👧</span>
-            <span class="ml-4">Pet Owners</span>
+            <span class="ml-4 font-semibold">Pet Owners</span>
         </a>
      <a href="{{ route('pets.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🐾</span>
-            <span class="ml-4">Pets</span>
+            <span class="ml-4 font-semibold">Pets</span>
         </a>
 
         <a href="{{ route('reports.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">📊</span>
-            <span class="ml-4">Clinic Reports</span>
+            <span class="ml-4 font-semibold">Clinic Reports</span>
         </a>
 
         <a href="{{ route('products.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">💊</span>
-            <span class="ml-4">Products</span>
+            <span class="ml-4 font-semibold">Products</span>
         </a>
 
         <a href="{{ route('payments.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">💳</span>
-            <span class="ml-4">Payments</span>
+            <span class="ml-4 font-semibold">Payments</span>
         </a>
 
         <a href="{{ route('invoices.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🧾</span>
-            <span class="ml-4">Invoices</span>
+            <span class="ml-4 font-semibold">Invoices</span>
         </a>
 
         <a href="{{ route('services.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🛠</span>
-            <span class="ml-4">Services</span>
+            <span class="ml-4 font-semibold">Services</span>
         </a>
 
     @endif
@@ -85,19 +85,19 @@
         <a href="{{ route('appointments.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">📅</span>
-            <span class="ml-4">My Appointments</span>
+            <span class="ml-4 font-semibold">My Appointments</span>
         </a>
 
         <a href="{{ route('medical-records.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🩺</span>
-            <span class="ml-4">Medical Records</span>
+            <span class="ml-4 font-semibold">Medical Records</span>
         </a>
 
         <a href="{{ route('pets.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🐾</span>
-            <span class="ml-4">Pets</span>
+            <span class="ml-4 font-semibold">Pets</span>
         </a>
 
     @endif
@@ -108,25 +108,25 @@
         <a href="{{ route('owners.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">👨‍👩‍👧</span>
-            <span class="ml-4">Pet Owners</span>
+            <span class="ml-4 font-semibold">Pet Owners</span>
         </a>
 
         <a href="{{ route('pets.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🐾</span>
-            <span class="ml-4">Pets</span>
+            <span class="ml-4 font-semibold">Pets</span>
         </a>
 
         <a href="{{ route('appointments.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">📅</span>
-            <span class="ml-4">Appointments</span>
+            <span class="ml-4 font-semibold">Appointments</span>
         </a>
 
         <a href="{{ route('invoices.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🧾</span>
-            <span class="ml-4">Invoices</span>
+            <span class="ml-4 font-semibold">Invoices</span>
         </a>
 
     @endif
@@ -143,13 +143,13 @@
         <a href="{{ route('appointments.create') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">📅</span>
-            <span class="ml-4">Book Appointment</span>
+            <span class="ml-4 font-semibold">Book Appointment</span>
         </a>
 
         <a href="#"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🩺</span>
-            <span class="ml-4">My Medical Records</span>
+            <span class="ml-4 font-semibold">My Medical Records</span>
         </a>
 
     @endif
@@ -158,7 +158,7 @@
     <a href="#"
        class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
         <span class="text-xl">⚙️</span>
-        <span class="ml-4">Profile</span>
+        <span class="ml-4 font-semibold">Profile</span>
     </a>
 
     {{-- LOGOUT --}}
