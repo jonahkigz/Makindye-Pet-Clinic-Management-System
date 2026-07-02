@@ -15,10 +15,10 @@
         <table class="w-full">
             <thead class="bg-green-700 text-white">
                 <tr>
-                    <th class="p-3 text-left">Pet</th>
+                    <th class="p-3 text-left">Pet Name</th>
                     <th class="p-3 text-left">Owner</th>
                     <th class="p-3 text-left">Gender</th>
-                    <th class="p-3 text-left">Color</th>
+                    <th class="p-3 text-left">Species/Color</th>
                     <th class="p-3 text-left">Weight</th>
                     <th class="p-3 text-right">Actions</th>
                 </tr>
