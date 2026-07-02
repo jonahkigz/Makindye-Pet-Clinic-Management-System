@@ -137,7 +137,7 @@
         <a href="{{ route('pets.create') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">➕</span>
-            <span class="ml-4">Add Pet</span>
+            <span class="ml-4 font-semibold">Add Pet</span>
         </a>
 
         <a href="{{ route('appointments.create') }}"
@@ -165,7 +165,7 @@
     <form method="POST" action="{{ route('logout') }}" class="pt-2">
         @csrf
         <button type="submit"
-                class="w-full group flex items-center px-4 py-3 rounded-xl hover:bg-red-600 hover:translate-x-2 transition-all duration-300 text-left">
+                class="w-full group flex items-center px-4 py-3 rounded-xl hover:bg-orange-500 hover:translate-x-2 transition-all duration-300 text-left">
             <span class="text-xl">🚪</span>
             <span class="ml-4 font-semibold">Logout</span>
         </button>
