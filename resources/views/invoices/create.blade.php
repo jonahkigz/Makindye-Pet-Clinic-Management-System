@@ -31,17 +31,27 @@
 
         <h2 class="font-bold text-green-800 mt-4">Invoice Items</h2>
 
-        <div id="items" class="space-y-3">
-            <div class="grid grid-cols-3 gap-3">
-                <input name="item_name[]" class="border rounded p-2" placeholder="Item name" required>
-                <input name="quantity[]" type="number" value="1" min="1" class="border rounded p-2" required>
-                <input name="unit_price[]" type="number" step="0.01" class="border rounded p-2" placeholder="Unit price" required>
-            </div>
-        </div>
+<div id="items" class="space-y-3">
+    <div class="grid grid-cols-4 gap-3 item-row">
+        <select name="item_type[]" class="border rounded p-2 item-type" required onchange="loadItems(this)">
+            <option value="">Type</option>
+            <option value="service">Service</option>
+            <option value="product">Product</option>
+        </select>
 
-        <button type="button" onclick="addItem()" class="bg-gray-700 text-white px-4 py-2 rounded-lg">
-            Add Item
-        </button>
+        <select name="item_id[]" class="border rounded p-2 item-select" required onchange="setPrice(this)">
+            <option value="">Select Item</option>
+        </select>
+
+        <input name="quantity[]" type="number" value="1" min="1" class="border rounded p-2" required>
+
+        <input name="unit_price[]" type="number" step="0.01" class="border rounded p-2 unit-price" placeholder="Unit price" readonly required>
+    </div>
+</div>
+
+<button type="button" onclick="addItem()" class="bg-gray-700 text-white px-4 py-2 rounded-lg">
+    Add Item
+</button>
 
         <button class="bg-green-700 text-white px-4 py-2 rounded-lg">
             Save Invoice
@@ -50,12 +60,56 @@
 </div>
 
 <script>
+const services = @json($services);
+const products = @json($products);
+
+function loadItems(typeSelect) {
+    const row = typeSelect.closest('.item-row');
+    const itemSelect = row.querySelector('.item-select');
+    const priceInput = row.querySelector('.unit-price');
+
+    itemSelect.innerHTML = '<option value="">Select Item</option>';
+    priceInput.value = '';
+
+    let items = typeSelect.value === 'service' ? services : products;
+
+    items.forEach(item => {
+        let price = typeSelect.value === 'service'
+            ? item.price
+            : item.selling_price;
+
+        itemSelect.innerHTML += `
+            <option value="${item.id}" data-price="${price}">
+                ${item.name}
+            </option>
+        `;
+    });
+}
+
+function setPrice(itemSelect) {
+    const row = itemSelect.closest('.item-row');
+    const priceInput = row.querySelector('.unit-price');
+    const selected = itemSelect.options[itemSelect.selectedIndex];
+
+    priceInput.value = selected.dataset.price || '';
+}
+
 function addItem() {
     document.getElementById('items').insertAdjacentHTML('beforeend', `
-        <div class="grid grid-cols-3 gap-3">
-            <input name="item_name[]" class="border rounded p-2" placeholder="Item name" required>
+        <div class="grid grid-cols-4 gap-3 item-row">
+            <select name="item_type[]" class="border rounded p-2 item-type" required onchange="loadItems(this)">
+                <option value="">Type</option>
+                <option value="service">Service</option>
+                <option value="product">Product</option>
+            </select>
+
+            <select name="item_id[]" class="border rounded p-2 item-select" required onchange="setPrice(this)">
+                <option value="">Select Item</option>
+            </select>
+
             <input name="quantity[]" type="number" value="1" min="1" class="border rounded p-2" required>
-            <input name="unit_price[]" type="number" step="0.01" class="border rounded p-2" placeholder="Unit price" required>
+
+            <input name="unit_price[]" type="number" step="0.01" class="border rounded p-2 unit-price" placeholder="Unit price" readonly required>
         </div>
     `);
 }
