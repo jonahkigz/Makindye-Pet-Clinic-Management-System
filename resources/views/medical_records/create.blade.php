@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+@php
+    $appointment = $appointment ?? null;
+@endphp
 <div class="p-6 max-w-5xl mx-auto">
 
     <div class="bg-white rounded-2xl shadow p-6 mb-6">
