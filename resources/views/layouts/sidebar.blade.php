@@ -46,6 +46,16 @@
             <span class="text-xl">🐾</span>
             <span class="ml-4 font-semibold">Pets</span>
         </a>
+     <a href="{{ route('appointments.index') }}"
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
+            <span class="text-xl">📅</span>
+            <span class="ml-4 font-semibold">Appointments</span>
+        </a>
+    <a href="{{ route('appointments.index') }}"
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
+            <span class="text-xl">🩺</span>
+            <span class="ml-4 font-semibold">Medical Reports</span>
+        </a>
 
         <a href="{{ route('reports.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
@@ -88,10 +98,10 @@
             <span class="ml-4 font-semibold">My Appointments</span>
         </a>
 
-        <a href="{{ route('medical-records.index') }}"
+        <a href="{{ route('appointments.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🩺</span>
-            <span class="ml-4 font-semibold">Medical Records</span>
+            <span class="ml-4 font-semibold">Medical Reports</span>
         </a>
 
         <a href="{{ route('pets.index') }}"
@@ -146,10 +156,10 @@
             <span class="ml-4 font-semibold">Book Appointment</span>
         </a>
 
-        <a href="#"
+        <a href="{{ route('appointments.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🩺</span>
-            <span class="ml-4 font-semibold">My Medical Records</span>
+            <span class="ml-4 font-semibold">Medical Reports</span>
         </a>
 
     @endif
