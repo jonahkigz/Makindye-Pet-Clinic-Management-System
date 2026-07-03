@@ -51,6 +51,21 @@
             </h2>
         </div>
 
+          <div class="bg-white p-5 rounded-lg shadow">
+            <p class="text-gray-500">Products</p>
+            <h2 class="text-3xl font-bold">{{ $stats['products'] }}</h2>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow">
+            <p class="text-gray-500">Pending Invoices</p>
+            <h2 class="text-3xl font-bold text-orange-600">{{ $stats['pending_invoices'] }}</h2>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow">
+            <p class="text-gray-500">Low Stock</p>
+            <h2 class="text-3xl font-bold text-red-600">{{ $stats['low_stock'] }}</h2>
+        </div>
+
         <div class="bg-white p-6 rounded-xl shadow">
             <p class="text-gray-500">Monthly Revenue</p>
             <h2 class="text-3xl font-bold text-emerald-600">
