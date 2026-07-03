@@ -10,6 +10,7 @@ use App\Models\Payment;
 use App\Models\Pet;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Service;
 use Illuminate\Support\Facades\Schema;
 
 class DashboardController extends Controller
@@ -64,6 +65,9 @@ class DashboardController extends Controller
         'monthly_revenue' => Payment::whereMonth('created_at', now()->month)->sum('amount'),
         'total_revenue' => Payment::sum('amount'),
         'pending_invoices' => Invoice::where('status', 'unpaid')->count(),
+        'low_stock' => Product::whereColumn('quantity', '<=', 'reorder_level')->count(),
+        'services' => Service::count(),
+        'monthly_revenue' => Payment::whereMonth('created_at', now()->month)->sum('amount'),
     ],
 
     'appointments' => Appointment::with(['owner', 'pet'])
