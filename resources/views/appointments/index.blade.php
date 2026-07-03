@@ -20,7 +20,7 @@
                     <th class="p-3 text-left">Pet</th>
                     <th class="p-3 text-left">Vet</th>
                     <th class="p-3 text-left">Status</th>
-                    <th class="p-3 text-right">Actions</th>
+                    <th class="p-3 text-right">Actions    </th>
                 </tr>
             </thead>
             <tbody>
