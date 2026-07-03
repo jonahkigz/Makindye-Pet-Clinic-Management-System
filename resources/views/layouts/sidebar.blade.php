@@ -12,7 +12,7 @@
                 <h1 class="text-xl font-bold tracking-wide">
                     MPCMS
                 </h1>
-                <p class="text-xl text-green-900">
+                <p class="text-xl text-green-1000">
                     Makindye Pet Clinic
                 </p>
             </div>
