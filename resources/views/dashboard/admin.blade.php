@@ -95,7 +95,7 @@
         <p class="text-sm font-medium text-green-700">
             Monthly Revenue
         </p>
-        <h2 class="text-sm font-bold text-green-900">
+        <h2 class="text-x2 font-bold text-green-900">
             UGX {{ number_format($stats['monthly_revenue']) }}
         </h2>
     </div>
