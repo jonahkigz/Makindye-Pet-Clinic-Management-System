@@ -63,6 +63,7 @@ class DashboardController extends Controller
         'low_stock' => Product::whereColumn('quantity', '<=', 'reorder_level')->count(),
         'monthly_revenue' => Payment::whereMonth('created_at', now()->month)->sum('amount'),
         'total_revenue' => Payment::sum('amount'),
+        'pending_invoices' => Invoice::where('status', 'unpaid')->count(),
     ],
 
     'appointments' => Appointment::with(['owner', 'pet'])
