@@ -91,7 +91,7 @@
     </a>
 
     {{-- Low Stock --}}
-    <a href="{{ route('inventory.index') }}">
+    <a href="{{ route('products.index') }}">
         <div class="bg-red-50 border border-red-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
             <p class="text-sm font-medium text-red-700">
                 Low Stock
