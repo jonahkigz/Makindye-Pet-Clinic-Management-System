@@ -104,7 +104,7 @@
 
     {{-- Monthly Revenue --}}
     <a href="{{ route('payments.index') }}">
-        <div class="bg-green-50 border border-green-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-5 h-35 flex flex-col justify-between">
+        <div class="bg-green-50 border border-green-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-5 h-40 flex flex-col justify-between">
             <p class="text-sm font-medium text-green-700">
                 Monthly Revenue
             </p>
@@ -113,6 +113,18 @@
             </h2>
         </div>
     </a>
+    
+    {{-- Services Offered --}}
+<a href="{{ route('services.index') }}">
+    <div class="bg-indigo-50 border border-indigo-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
+        <p class="text-sm font-medium text-indigo-700">
+            Services Offered
+        </p>
+        <h2 class="text-4xl font-bold text-indigo-900">
+            {{ $stats['services'] }}
+        </h2>
+    </div>
+</a>
 
 </div>
     {{-- =========================================
