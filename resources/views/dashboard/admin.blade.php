@@ -31,7 +31,7 @@
 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
     {{-- Today's Appointments --}}
-    <div class="bg-blue-50 border border-blue-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-6 h-30 flex flex-col justify-between">
+    <div class="bg-blue-50 border border-blue-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
         <p class="text-sm font-medium text-blue-700">
             Today's Appointments
         </p>
@@ -41,7 +41,7 @@
     </div>
 
     {{-- Registered Pets --}}
-    <div class="bg-emerald-50 border border-emerald-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-5 h-25 flex flex-col justify-between">
+    <div class="bg-emerald-50 border border-emerald-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
         <p class="text-sm font-medium text-emerald-700">
             Registered Pets
         </p>
@@ -51,7 +51,7 @@
     </div>
 
     {{-- Pet Owners --}}
-    <div class="bg-purple-50 border border-purple-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-5 h-25 flex flex-col justify-between">
+    <div class="bg-purple-50 border border-purple-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
         <p class="text-sm font-medium text-purple-700">
             Pet Owners
         </p>
@@ -61,7 +61,7 @@
     </div>
 
     {{-- Products --}}
-    <div class="bg-cyan-50 border border-cyan-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-5 h-25 flex flex-col justify-between">
+    <div class="bg-cyan-50 border border-cyan-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
         <p class="text-sm font-medium text-cyan-700">
             Products
         </p>
@@ -71,7 +71,7 @@
     </div>
 
     {{-- Pending Invoices --}}
-    <div class="bg-amber-50 border border-amber-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-5 h-25 flex flex-col justify-between">
+    <div class="bg-amber-50 border border-amber-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
         <p class="text-sm font-medium text-amber-700">
             Pending Invoices
         </p>
@@ -81,7 +81,7 @@
     </div>
 
     {{-- Low Stock --}}
-    <div class="bg-red-50 border border-red-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-5 h-25 flex flex-col justify-between">
+    <div class="bg-red-50 border border-red-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
         <p class="text-sm font-medium text-red-700">
             Low Stock
         </p>
@@ -91,11 +91,11 @@
     </div>
 
     {{-- Monthly Revenue --}}
-    <div class="bg-green-50 border border-green-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-5 h-25 flex flex-col justify-between">
+    <div class="bg-green-50 border border-green-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
         <p class="text-sm font-medium text-green-700">
             Monthly Revenue
         </p>
-        <h2 class="text-3xl font-bold text-green-900">
+        <h2 class="text-sm font-bold text-green-900">
             UGX {{ number_format($stats['monthly_revenue']) }}
         </h2>
     </div>
