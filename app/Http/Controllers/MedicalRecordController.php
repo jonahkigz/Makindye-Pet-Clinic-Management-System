@@ -89,4 +89,12 @@ class MedicalRecordController extends Controller
         'appointment' => $appointment,
     ]);
 }
+    public function show(MedicalRecord $medical_record)
+{
+    $medical_record->load(['pet.owner', 'appointment', 'vet']);
+
+    return view('medical_records.show', [
+        'record' => $medical_record,
+    ]);
+}
 }
