@@ -25,20 +25,31 @@ class MedicalRecordController extends Controller
         ]);
     }
 
-    public function store(Request $request)
-    {
-        MedicalRecord::create($request->validate([
-            'pet_id' => 'required',
-            'appointment_id' => 'nullable',
-            'vet_id' => 'nullable',
-            'symptoms' => 'nullable|string',
-            'diagnosis' => 'nullable|string',
-            'treatment' => 'nullable|string',
-            'notes' => 'nullable|string',
-        ]));
+   public function store(Request $request)
+{
+    $validated = $request->validate([
+        'pet_id' => 'required',
+        'appointment_id' => 'nullable',
+        'vet_id' => 'nullable',
+        'symptoms' => 'nullable|string',
+        'diagnosis' => 'nullable|string',
+        'treatment' => 'nullable|string',
+        'notes' => 'nullable|string',
+    ]);
 
-        return redirect()->route('medical-records.index')->with('success', 'Medical record saved.');
+    $record = MedicalRecord::create($validated);
+
+    if ($request->appointment_id) {
+        Appointment::where('id', $request->appointment_id)
+            ->update([
+                'status' => 'Completed',
+            ]);
     }
+
+    return redirect()
+        ->route('medical-records.show', $record)
+        ->with('success', 'Medical report saved and appointment marked as completed.');
+}
 
     public function edit(MedicalRecord $medical_record)
     {
@@ -70,4 +81,12 @@ class MedicalRecordController extends Controller
         $medical_record->delete();
         return back()->with('success', 'Medical record deleted.');
     }
+    public function createFromAppointment(Appointment $appointment)
+{
+    $appointment->load(['pet', 'owner', 'vet']);
+
+    return view('medical_records.create_from_appointment', [
+        'appointment' => $appointment,
+    ]);
+}
 }
