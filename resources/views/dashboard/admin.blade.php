@@ -89,35 +89,81 @@
 
     </div>
 
-    {{-- =========================================
-        RECENT ACTIVITY
-    ========================================== --}}
-    <div class="grid lg:grid-cols-3 gap-6">
+   {{-- =========================================
+    TODAY'S CLINIC ACTIVITY
+========================================== --}}
+<div class="grid lg:grid-cols-3 gap-6">
 
-        <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow">
+    <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
 
-            <h2 class="text-xl font-semibold mb-4">
-                Recent Activity
-            </h2>
-
-            <div class="space-y-3">
-
-                @forelse($appointments as $appointment)
-                    <div class="border p-3 rounded">
-                        <p class="font-bold">
-                            {{ $appointment->pet->name ?? 'Pet' }}
-                        </p>
-                        <p class="text-sm text-gray-500">
-                            {{ $appointment->owner->name ?? 'Owner' }}
-                        </p>
-                    </div>
-                @empty
-                    <p class="text-gray-500">No recent appointments</p>
-                @endforelse
-
+        <div class="flex items-center justify-between mb-5">
+            <div>
+                <h2 class="text-xl font-bold text-gray-800">
+                    Today's Clinic Activity
+                </h2>
+                <p class="text-sm text-gray-500">
+                    Latest appointments and patient visits
+                </p>
             </div>
 
+            <div class="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-2xl">
+                📅
+            </div>
         </div>
+
+        <div class="space-y-4">
+
+            @forelse($appointments as $appointment)
+                <div class="flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-emerald-50 to-white border border-emerald-100 hover:shadow-md transition">
+
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xl shadow">
+                            🐾
+                        </div>
+
+                        <div>
+                            <p class="font-bold text-gray-800">
+                                {{ $appointment->pet->name ?? 'Unknown Pet' }}
+                            </p>
+
+                            <p class="text-sm text-gray-500">
+                                Owner: {{ $appointment->owner->full_name ?? $appointment->owner->name ?? 'Unknown Owner' }}
+                            </p>
+
+                            <p class="text-xs text-gray-400 mt-1">
+                                {{ $appointment->scheduled_at ?? 'No scheduled time' }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold
+                            @if(($appointment->status ?? '') === 'completed')
+                                bg-green-100 text-green-700
+                            @elseif(($appointment->status ?? '') === 'cancelled')
+                                bg-red-100 text-red-700
+                            @elseif(($appointment->status ?? '') === 'pending')
+                                bg-yellow-100 text-yellow-700
+                            @else
+                                bg-blue-100 text-blue-700
+                            @endif
+                        ">
+                            {{ ucfirst($appointment->status ?? 'Scheduled') }}
+                        </span>
+                    </div>
+
+                </div>
+            @empty
+                <div class="text-center py-10 bg-gray-50 rounded-2xl border border-dashed border-gray-300">
+                    <div class="text-4xl mb-2">🐶</div>
+                    <p class="font-semibold text-gray-700">No appointments yet</p>
+                    <p class="text-sm text-gray-500">New clinic activity will appear here.</p>
+                </div>
+            @endforelse
+
+        </div>
+
+    </div>
 
         {{-- QUICK ACTIONS --}}
         <div class="bg-white p-6 rounded-xl shadow">
