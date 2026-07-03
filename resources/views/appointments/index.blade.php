@@ -32,13 +32,43 @@
                         <td class="p-3">{{ $appointment->vet->name ?? 'N/A' }}</td>
                         <td class="p-3">{{ $appointment->status }}</td>
                         <td class="p-3 text-right">
-                            <a href="{{ route('appointments.edit', $appointment) }}" class="text-blue-600">Edit</a>
-                            <form action="{{ route('appointments.destroy', $appointment) }}" method="POST" class="inline">
-                                @csrf
-                                @method('DELETE')
-                                <button class="text-red-600 ml-3" onclick="return confirm('Delete appointment?')">Delete</button>
-                            </form>
-                        </td>
+
+    @if($appointment->status != 'Completed')
+
+        <a href="{{ route('appointments.medical-record.create', $appointment) }}"
+           class="text-emerald-600 font-semibold mr-3">
+            Complete Visit
+        </a>
+
+    @elseif($appointment->medicalRecord)
+
+        <a href="{{ route('medical-records.show', $appointment->medicalRecord) }}"
+           class="text-green-700 font-semibold mr-3">
+            View Report
+        </a>
+
+    @endif
+
+    <a href="{{ route('appointments.edit', $appointment) }}"
+       class="text-blue-600">
+        Edit
+    </a>
+
+    <form action="{{ route('appointments.destroy', $appointment) }}"
+          method="POST"
+          class="inline">
+
+        @csrf
+        @method('DELETE')
+
+        <button class="text-red-600 ml-3"
+                onclick="return confirm('Delete appointment?')">
+            Delete
+        </button>
+
+    </form>
+
+</td>
                     </tr>
                 @empty
                     <tr><td colspan="6" class="p-6 text-center text-gray-500">No appointments yet.</td></tr>
