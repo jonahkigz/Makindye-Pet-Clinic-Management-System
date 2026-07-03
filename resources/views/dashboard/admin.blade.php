@@ -25,80 +25,94 @@
 
     </div>
 
-    {{-- =========================================
+   {{-- =========================================
     KPI STATISTICS
 ========================================== --}}
 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
     {{-- Today's Appointments --}}
-    <div class="bg-blue-50 border border-blue-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
-        <p class="text-sm font-medium text-blue-700">
-            Today's Appointments
-        </p>
-        <h2 class="text-4xl font-bold text-blue-900">
-            {{ $stats['today_appointments'] }}
-        </h2>
-    </div>
+    <a href="{{ route('appointments.index') }}">
+        <div class="bg-blue-50 border border-blue-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
+            <p class="text-sm font-medium text-blue-700">
+                Today's Appointments
+            </p>
+            <h2 class="text-4xl font-bold text-blue-900">
+                {{ $stats['today_appointments'] }}
+            </h2>
+        </div>
+    </a>
 
     {{-- Registered Pets --}}
-    <div class="bg-emerald-50 border border-emerald-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
-        <p class="text-sm font-medium text-emerald-700">
-            Registered Pets
-        </p>
-        <h2 class="text-4xl font-bold text-emerald-900">
-            {{ $stats['registered_pets'] }}
-        </h2>
-    </div>
+    <a href="{{ route('pets.index') }}">
+        <div class="bg-emerald-50 border border-emerald-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
+            <p class="text-sm font-medium text-emerald-700">
+                Registered Pets
+            </p>
+            <h2 class="text-4xl font-bold text-emerald-900">
+                {{ $stats['registered_pets'] }}
+            </h2>
+        </div>
+    </a>
 
     {{-- Pet Owners --}}
-    <div class="bg-purple-50 border border-purple-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
-        <p class="text-sm font-medium text-purple-700">
-            Pet Owners
-        </p>
-        <h2 class="text-4xl font-bold text-purple-900">
-            {{ $stats['owners'] }}
-        </h2>
-    </div>
+    <a href="{{ route('owners.index') }}">
+        <div class="bg-purple-50 border border-purple-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
+            <p class="text-sm font-medium text-purple-700">
+                Pet Owners
+            </p>
+            <h2 class="text-4xl font-bold text-purple-900">
+                {{ $stats['owners'] }}
+            </h2>
+        </div>
+    </a>
 
     {{-- Products --}}
-    <div class="bg-cyan-50 border border-cyan-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
-        <p class="text-sm font-medium text-cyan-700">
-            Products
-        </p>
-        <h2 class="text-4xl font-bold text-cyan-900">
-            {{ $stats['products'] }}
-        </h2>
-    </div>
+    <a href="{{ route('products.index') }}">
+        <div class="bg-cyan-50 border border-cyan-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
+            <p class="text-sm font-medium text-cyan-700">
+                Products
+            </p>
+            <h2 class="text-4xl font-bold text-cyan-900">
+                {{ $stats['products'] }}
+            </h2>
+        </div>
+    </a>
 
     {{-- Pending Invoices --}}
-    <div class="bg-amber-50 border border-amber-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
-        <p class="text-sm font-medium text-amber-700">
-            Pending Invoices
-        </p>
-        <h2 class="text-4xl font-bold text-amber-900">
-            {{ $stats['pending_invoices'] }}
-        </h2>
-    </div>
+    <a href="{{ route('invoices.index') }}">
+        <div class="bg-amber-50 border border-amber-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
+            <p class="text-sm font-medium text-amber-700">
+                Pending Invoices
+            </p>
+            <h2 class="text-4xl font-bold text-amber-900">
+                {{ $stats['pending_invoices'] }}
+            </h2>
+        </div>
+    </a>
 
     {{-- Low Stock --}}
-    <div class="bg-red-50 border border-red-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
-        <p class="text-sm font-medium text-red-700">
-            Low Stock
-        </p>
-        <h2 class="text-4xl font-bold text-red-900">
-            {{ $stats['low_stock'] }}
-        </h2>
-    </div>
+    <a href="{{ route('inventory.index') }}">
+        <div class="bg-red-50 border border-red-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
+            <p class="text-sm font-medium text-red-700">
+                Low Stock
+            </p>
+            <h2 class="text-4xl font-bold text-red-900">
+                {{ $stats['low_stock'] }}
+            </h2>
+        </div>
+    </a>
 
     {{-- Monthly Revenue --}}
-    <div class="bg-green-50 border border-green-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
-        <p class="text-sm font-medium text-green-700">
-            Monthly Revenue
-        </p>
-        <h2 class="text-x2 font-bold text-green-900">
-            UGX {{ number_format($stats['monthly_revenue']) }}
-        </h2>
-    </div>
+    <a href="{{ route('payments.index') }}">
+        <div class="bg-green-50 border border-green-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-4 h-25 flex flex-col justify-between">
+            <p class="text-sm font-medium text-green-700">
+                Monthly Revenue
+            </p>
+            <h2 class="text-x2 font-bold text-green-900">
+                UGX {{ number_format($stats['monthly_revenue']) }}
+            </h2>
+        </div>
+    </a>
 
 </div>
     {{-- =========================================
