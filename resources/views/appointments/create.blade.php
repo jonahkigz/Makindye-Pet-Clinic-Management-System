@@ -24,7 +24,7 @@
                 <p><strong>Pet:</strong> {{ $appointment->pet->name ?? 'N/A' }}</p>
                 <p><strong>Owner:</strong> {{ $appointment->owner->full_name ?? $appointment->owner->name ?? 'N/A' }}</p>
                 <p><strong>Veterinarian:</strong> {{ $appointment->vet->name ?? 'N/A' }}</p>
-                <p><strong>Visit Date:</strong> {{ $appointment->scheduled_at ? $appointment->scheduled_at->format('d M Y') : 'N/A' }}</p>
+               <p><strong>Visit Date:</strong> {{ $appointment && $appointment->scheduled_at ? $appointment->scheduled_at->format('d M Y') : 'N/A' }}</p>
                 <p><strong>Reason:</strong> {{ $appointment->reason ?? 'N/A' }}</p>
                 <p><strong>Status:</strong> {{ $appointment->status ?? 'N/A' }}</p>
             </div>
@@ -55,7 +55,7 @@
                     <option value="">No Appointment</option>
                     @foreach($appointments as $item)
                         <option value="{{ $item->id }}">
-                            {{ $item->scheduled_at }} - {{ $item->pet->name ?? 'Pet' }}
+                          {{ $item && $item->scheduled_at ? $item->scheduled_at->format('d M Y') : 'No date' }} - {{ $item->pet->name ?? 'Pet' }}
                         </option>
                     @endforeach
                 </select>
