@@ -62,6 +62,10 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::resource('users', UserManagementController::class);
 });
+    Route::get('/appointments/{appointment}/medical-record/create', [MedicalRecordController::class, 'createFromAppointment'])
+    ->name('appointments.medical-record.create');
+
+Route::resource('medical-records', MedicalRecordController::class);
 
 });
 
