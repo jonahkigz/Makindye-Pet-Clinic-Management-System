@@ -76,7 +76,7 @@ function loadItems(typeSelect) {
     items.forEach(item => {
         let price = typeSelect.value === 'service'
             ? item.price
-            : item.selling_price;
+            : item.unit_price;
 
         itemSelect.innerHTML += `
             <option value="${item.id}" data-price="${price}">
