@@ -29,42 +29,55 @@ class InvoiceController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $data = $request->validate([
-            'owner_id' => 'required',
-            'appointment_id' => 'nullable',
-            'item_name.*' => 'required',
-            'quantity.*' => 'required|numeric|min:1',
-            'unit_price.*' => 'required|numeric|min:0',
-        ]);
+{
+    $request->validate([
+        'owner_id' => 'required',
+        'appointment_id' => 'nullable',
+        'item_type' => 'required|array',
+        'item_type.*' => 'required|in:service,product',
+        'item_id' => 'required|array',
+        'item_id.*' => 'required',
+        'quantity' => 'required|array',
+        'quantity.*' => 'required|numeric|min:1',
+        'unit_price' => 'required|array',
+        'unit_price.*' => 'required|numeric|min:0',
+    ]);
 
-        $total = 0;
+    $total = 0;
 
-        foreach ($request->item_name as $i => $name) {
-            $total += $request->quantity[$i] * $request->unit_price[$i];
-        }
-
-        $invoice = Invoice::create([
-            'owner_id' => $request->owner_id,
-            'appointment_id' => $request->appointment_id,
-            'invoice_number' => 'INV-' . date('YmdHis'),
-            'total_amount' => $total,
-            'paid_amount' => 0,
-            'status' => 'unpaid',
-        ]);
-
-        foreach ($request->item_name as $i => $name) {
-            InvoiceItem::create([
-                'invoice_id' => $invoice->id,
-                'item_name' => $name,
-                'quantity' => $request->quantity[$i],
-                'unit_price' => $request->unit_price[$i],
-                'subtotal' => $request->quantity[$i] * $request->unit_price[$i],
-            ]);
-        }
-
-        return redirect()->route('invoices.show', $invoice)->with('success', 'Invoice created.');
+    foreach ($request->item_id as $i => $itemId) {
+        $total += $request->quantity[$i] * $request->unit_price[$i];
     }
+
+    $invoice = Invoice::create([
+        'owner_id' => $request->owner_id,
+        'appointment_id' => $request->appointment_id,
+        'invoice_number' => 'INV-' . date('YmdHis'),
+        'total_amount' => $total,
+        'paid_amount' => 0,
+        'status' => 'unpaid',
+    ]);
+
+    foreach ($request->item_id as $i => $itemId) {
+        $itemType = $request->item_type[$i];
+
+        if ($itemType === 'service') {
+            $item = Service::findOrFail($itemId);
+        } else {
+            $item = Product::findOrFail($itemId);
+        }
+
+        InvoiceItem::create([
+            'invoice_id' => $invoice->id,
+            'item_name' => $item->name,
+            'quantity' => $request->quantity[$i],
+            'unit_price' => $request->unit_price[$i],
+            'subtotal' => $request->quantity[$i] * $request->unit_price[$i],
+        ]);
+    }
+
+    return redirect()->route('invoices.show', $invoice)->with('success', 'Invoice created.');
+}
 
     public function show(Invoice $invoice)
     {
