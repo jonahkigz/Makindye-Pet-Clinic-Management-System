@@ -26,55 +26,81 @@
     </div>
 
     {{-- =========================================
-        KPI STATISTICS
-    ========================================== --}}
-    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+    KPI STATISTICS
+========================================== --}}
+<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
-        <div class="bg-white p-6 rounded-xl shadow">
-            <p class="text-gray-500">Today's Appointments</p>
-            <h2 class="text-3xl font-bold text-emerald-600">
-                {{ $stats['today_appointments'] }}
-            </h2>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl shadow">
-            <p class="text-gray-500">Registered Pets</p>
-            <h2 class="text-3xl font-bold text-emerald-600">
-                {{ $stats['registered_pets'] }}
-            </h2>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl shadow">
-            <p class="text-gray-500">Pet Owners</p>
-            <h2 class="text-3xl font-bold text-emerald-600">
-                {{ $stats['owners'] }}
-            </h2>
-        </div>
-
-          <div class="bg-white p-5 rounded-lg shadow">
-            <p class="text-gray-500">Products</p>
-            <h2 class="text-3xl font-bold">{{ $stats['products'] }}</h2>
-        </div>
-
-        <div class="bg-white p-5 rounded-lg shadow">
-            <p class="text-gray-500">Pending Invoices</p>
-            <h2 class="text-3xl font-bold text-orange-600">{{ $stats['pending_invoices'] }}</h2>
-        </div>
-
-        <div class="bg-white p-5 rounded-lg shadow">
-            <p class="text-gray-500">Low Stock</p>
-            <h2 class="text-3xl font-bold text-red-600">{{ $stats['low_stock'] }}</h2>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl shadow">
-            <p class="text-gray-500">Monthly Revenue</p>
-            <h2 class="text-3xl font-bold text-emerald-600">
-                UGX {{ number_format($stats['monthly_revenue']) }}
-            </h2>
-        </div>
-
+    {{-- Today's Appointments --}}
+    <div class="bg-blue-50 border border-blue-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-6 h-36 flex flex-col justify-between">
+        <p class="text-sm font-medium text-blue-700">
+            Today's Appointments
+        </p>
+        <h2 class="text-4xl font-bold text-blue-900">
+            {{ $stats['today_appointments'] }}
+        </h2>
     </div>
 
+    {{-- Registered Pets --}}
+    <div class="bg-emerald-50 border border-emerald-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-6 h-36 flex flex-col justify-between">
+        <p class="text-sm font-medium text-emerald-700">
+            Registered Pets
+        </p>
+        <h2 class="text-4xl font-bold text-emerald-900">
+            {{ $stats['registered_pets'] }}
+        </h2>
+    </div>
+
+    {{-- Pet Owners --}}
+    <div class="bg-purple-50 border border-purple-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-6 h-36 flex flex-col justify-between">
+        <p class="text-sm font-medium text-purple-700">
+            Pet Owners
+        </p>
+        <h2 class="text-4xl font-bold text-purple-900">
+            {{ $stats['owners'] }}
+        </h2>
+    </div>
+
+    {{-- Products --}}
+    <div class="bg-cyan-50 border border-cyan-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-6 h-36 flex flex-col justify-between">
+        <p class="text-sm font-medium text-cyan-700">
+            Products
+        </p>
+        <h2 class="text-4xl font-bold text-cyan-900">
+            {{ $stats['products'] }}
+        </h2>
+    </div>
+
+    {{-- Pending Invoices --}}
+    <div class="bg-amber-50 border border-amber-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-6 h-36 flex flex-col justify-between">
+        <p class="text-sm font-medium text-amber-700">
+            Pending Invoices
+        </p>
+        <h2 class="text-4xl font-bold text-amber-900">
+            {{ $stats['pending_invoices'] }}
+        </h2>
+    </div>
+
+    {{-- Low Stock --}}
+    <div class="bg-red-50 border border-red-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-6 h-36 flex flex-col justify-between">
+        <p class="text-sm font-medium text-red-700">
+            Low Stock
+        </p>
+        <h2 class="text-4xl font-bold text-red-900">
+            {{ $stats['low_stock'] }}
+        </h2>
+    </div>
+
+    {{-- Monthly Revenue --}}
+    <div class="bg-green-50 border border-green-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-6 h-36 flex flex-col justify-between">
+        <p class="text-sm font-medium text-green-700">
+            Monthly Revenue
+        </p>
+        <h2 class="text-3xl font-bold text-green-900">
+            UGX {{ number_format($stats['monthly_revenue']) }}
+        </h2>
+    </div>
+
+</div>
     {{-- =========================================
         CHARTS SECTION
     ========================================== --}}
