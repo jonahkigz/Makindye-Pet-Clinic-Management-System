@@ -104,7 +104,7 @@
 
     {{-- Monthly Revenue --}}
     <a href="{{ route('payments.index') }}">
-        <div class="bg-green-50 border border-green-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-5 h-30 flex flex-col justify-between">
+        <div class="bg-green-50 border border-green-100 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 p-6 h-30 flex flex-col justify-between">
             <p class="text-sm font-medium text-green-700">
                 Monthly Revenue
             </p>
