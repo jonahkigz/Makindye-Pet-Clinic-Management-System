@@ -12,7 +12,9 @@ class AppointmentController extends Controller
 {
     public function index()
     {
-        $appointments = Appointment::with(['owner', 'pet', 'vet'])->latest()->get();
+        $appointments = Appointment::with(['owner', 'pet', 'vet', 'medicalRecord'])
+    ->latest()
+    ->get();
         return view('appointments.index', compact('appointments'));
     }
 
