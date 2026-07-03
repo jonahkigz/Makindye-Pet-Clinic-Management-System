@@ -1,7 +1,7 @@
 @php
     $role = auth()->user()->role ?? 'Pet Owner';
 @endphp
-<aside>
+<aside class="w-72 min-h-screen m-4 rounded-3xl bg-[#0F766E] text-white shadow-2xl overflow-hidden">
 <div class="px-6 py-8 border-b border-white/10">
         <div class="flex items-center space-x-3">
             <div class="w-12 h-12 rounded-xl bg-emerald-500 flex items-center justify-center text-2xl shadow-lg">
@@ -19,7 +19,7 @@
         </div>
     </div>
 
-<nav class="mt-6 px-4 space-y-2 bg-[#0F766E]">
+<nav class="mt-6 px-4 pb-6 space-y-2">
 
     {{-- DASHBOARD (ALL ROLES) --}}
     <a href="{{ route('dashboard') }}"
