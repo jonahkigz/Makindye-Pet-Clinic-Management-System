@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @forelse($appointments ?? [] as $appointment)
-    ...
+    
 @empty
     <p>No appointments found</p>
 @endforelse
@@ -90,7 +90,7 @@
     </div>
 
    {{-- =========================================
-    TODAY'S CLINIC ACTIVITY
+    RECENT CLINIC ACTIVITY
 ========================================== --}}
 <div class="grid lg:grid-cols-3 gap-6">
 
@@ -99,10 +99,10 @@
         <div class="flex items-center justify-between mb-5">
             <div>
                 <h2 class="text-xl font-bold text-gray-800">
-                    Today's Clinic Activity
+                    Recent Clinic Activity
                 </h2>
                 <p class="text-sm text-gray-500">
-                    Latest appointments and patient visits
+                    Latest appointments and pet visits
                 </p>
             </div>
 
