@@ -23,8 +23,8 @@ class InvoiceController extends Controller
         return view('invoices.create', [
             'owners' => Owner::orderBy('full_name')->get(),
             'appointments' => Appointment::with('pet')->latest()->get(),
-            'services' => Service::orderBy('name')->get(),
-            'products' => Product::orderBy('name')->get(),
+             'services' => Service::all(),
+            'products' => Product::all(),
         ]);
     }
 
