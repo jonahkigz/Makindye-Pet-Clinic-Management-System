@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\Service;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -142,34 +143,43 @@ return view('dashboard.admin', compact('appointments'));
             ]));
         }
 
-        /*
-        |------------------------------------------------------------------
-        | PET OWNER
-        |------------------------------------------------------------------
-        */
-        if ($role === 'Pet Owner') {
+      /*
+|--------------------------------------------------------------------------
+| PET OWNER
+|--------------------------------------------------------------------------
+*/
+if ($role === 'Pet Owner') {
 
-            $owner = Owner::where('user_id', $user->id)->first();
+    $owner = Owner::where('user_id', $user->id)->first();
 
-            return view('dashboard.owner', array_merge($baseData, [
+    return view('dashboard.owner', array_merge($baseData, [
 
-                'stats' => [
-                    'my_pets' => $owner ? Pet::where('owner_id', $owner->id)->count() : 0,
-                    'my_appointments' => $owner ? Appointment::where('owner_id', $owner->id)->count() : 0,
-                    'my_invoices' => $owner ? Invoice::where('owner_id', $owner->id)->count() : 0,
-                ],
+        'stats' => [
+            'my_pets' => $owner ? Pet::where('owner_id', $owner->id)->count() : 0,
+            'my_appointments' => $owner ? Appointment::where('owner_id', $owner->id)->count() : 0,
+            'my_invoices' => $owner ? Invoice::where('owner_id', $owner->id)->count() : 0,
+        ],
 
-                'myPets' => $owner ? Pet::where('owner_id', $owner->id)->get() : [],
-                'myAppointments' => $owner ? Appointment::with('pet')->where('owner_id', $owner->id)->get() : [],
-                'myInvoices' => $owner ? Invoice::where('owner_id', $owner->id)->get() : [],
-                'medicalHistory' => $owner
-                    ? MedicalRecord::whereHas('pet', fn($q) => $q->where('owner_id', $owner->id))->get()
-                    : [],
-            ]));
-        }
+        'myPets' => $owner
+            ? Pet::where('owner_id', $owner->id)->latest()->get()
+            : collect(),
 
-        abort(403, 'Unauthorized role access');
-    }
+        'myAppointments' => $owner
+            ? Appointment::with(['pet', 'vet'])->where('owner_id', $owner->id)->latest()->get()
+            : collect(),
+
+        'myInvoices' => $owner
+            ? Invoice::where('owner_id', $owner->id)->latest()->get()
+            : collect(),
+
+        'medicalHistory' => $owner
+            ? MedicalRecord::with(['pet', 'appointment', 'vet'])
+                ->whereHas('pet', fn($q) => $q->where('owner_id', $owner->id))
+                ->latest()
+                ->get()
+            : collect(),
+    ]));
+}
 
     private function getAppointmentDateField()
     {
