@@ -9,10 +9,9 @@ use App\Models\Owner;
 use App\Models\Payment;
 use App\Models\Pet;
 use App\Models\Product;
-use App\Models\User;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -27,9 +26,9 @@ class DashboardController extends Controller
         ];
 
         /*
-        |------------------------------------------------------------------
+        |--------------------------------------------------------------------------
         | ADMIN
-        |------------------------------------------------------------------
+        |--------------------------------------------------------------------------
         */
         if ($role === 'Administrator') {
 
@@ -40,7 +39,7 @@ class DashboardController extends Controller
                 ->groupBy('month')
                 ->pluck('total', 'month');
 
-            $months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            $months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
             $revenueData = [];
             $appointmentData = [];
@@ -55,44 +54,40 @@ class DashboardController extends Controller
 
             return view('dashboard.admin', array_merge($baseData, [
 
-    'stats' => [
-        'today_appointments' => Appointment::whereDate($dateField, today())->count(),
-        'registered_pets' => Pet::count(),
-        'owners' => Owner::count(),
-        'users' => User::count(),
-        'medical_records' => MedicalRecord::count(),
-        'products' => Product::count(),
-        'low_stock' => Product::whereColumn('quantity', '<=', 'reorder_level')->count(),
-        'monthly_revenue' => Payment::whereMonth('created_at', now()->month)->sum('amount'),
-        'total_revenue' => Payment::sum('amount'),
-        'pending_invoices' => Invoice::where('status', 'unpaid')->count(),
-        'low_stock' => Product::whereColumn('quantity', '<=', 'reorder_level')->count(),
-        'services' => Service::count(),
-        'monthly_revenue' => Payment::whereMonth('created_at', now()->month)->sum('amount'),
-    ],
+                'stats' => [
+                    'today_appointments' => Appointment::whereDate($dateField, today())->count(),
+                    'registered_pets' => Pet::count(),
+                    'owners' => Owner::count(),
+                    'users' => User::count(),
+                    'medical_records' => MedicalRecord::count(),
+                    'products' => Product::count(),
+                    'low_stock' => Product::whereColumn('quantity', '<=', 'reorder_level')->count(),
+                    'monthly_revenue' => Payment::whereMonth('created_at', now()->month)->sum('amount'),
+                    'total_revenue' => Payment::sum('amount'),
+                    'pending_invoices' => Invoice::where('status', 'unpaid')->count(),
+                    'services' => Service::count(),
+                ],
 
-    'appointments' => Appointment::with(['owner', 'pet'])
-        ->latest()
-        ->take(5)
-        ->get(),
+                'appointments' => Appointment::with(['owner', 'pet', 'vet'])
+                    ->latest()
+                    ->take(5)
+                    ->get(),
 
-    'payments' => Payment::with(['invoice.owner'])
-        ->latest()
-        ->take(5)
-        ->get(),
+                'payments' => Payment::with(['invoice.owner'])
+                    ->latest()
+                    ->take(5)
+                    ->get(),
 
-    'months' => $months,
-    'revenueData' => $revenueData,
-    'appointmentData' => $appointmentData,
-    
-]));
-return view('dashboard.admin', compact('appointments'));
+                'months' => $months,
+                'revenueData' => $revenueData,
+                'appointmentData' => $appointmentData,
+            ]));
         }
 
         /*
-        |------------------------------------------------------------------
+        |--------------------------------------------------------------------------
         | VETERINARIAN
-        |------------------------------------------------------------------
+        |--------------------------------------------------------------------------
         */
         if ($role === 'Veterinarian') {
 
@@ -107,12 +102,12 @@ return view('dashboard.admin', compact('appointments'));
                     'medical_records' => MedicalRecord::count(),
                 ],
 
-                'appointments' => Appointment::with(['pet', 'owner'])
+                'appointments' => Appointment::with(['pet', 'owner', 'vet'])
                     ->whereDate($dateField, today())
                     ->latest()
                     ->get(),
 
-                'medicalRecords' => MedicalRecord::with('pet')
+                'medicalRecords' => MedicalRecord::with(['pet', 'appointment', 'vet'])
                     ->latest()
                     ->take(10)
                     ->get(),
@@ -120,9 +115,9 @@ return view('dashboard.admin', compact('appointments'));
         }
 
         /*
-        |------------------------------------------------------------------
+        |--------------------------------------------------------------------------
         | RECEPTIONIST
-        |------------------------------------------------------------------
+        |--------------------------------------------------------------------------
         */
         if ($role === 'Receptionist') {
 
@@ -136,50 +131,60 @@ return view('dashboard.admin', compact('appointments'));
                     'owners' => Owner::count(),
                 ],
 
-                'appointments' => Appointment::with(['pet', 'owner'])
+                'appointments' => Appointment::with(['pet', 'owner', 'vet'])
                     ->whereDate($dateField, today())
                     ->latest()
                     ->get(),
             ]));
         }
 
-      /*
-|--------------------------------------------------------------------------
-| PET OWNER
-|--------------------------------------------------------------------------
-*/
-if ($role === 'Pet Owner') {
+        /*
+        |--------------------------------------------------------------------------
+        | PET OWNER
+        |--------------------------------------------------------------------------
+        */
+        if ($role === 'Pet Owner') {
 
-    $owner = Owner::where('user_id', $user->id)->first();
+            $owner = Owner::where('user_id', $user->id)->first();
 
-    return view('dashboard.owner', array_merge($baseData, [
+            return view('dashboard.owner', array_merge($baseData, [
 
-        'stats' => [
-            'my_pets' => $owner ? Pet::where('owner_id', $owner->id)->count() : 0,
-            'my_appointments' => $owner ? Appointment::where('owner_id', $owner->id)->count() : 0,
-            'my_invoices' => $owner ? Invoice::where('owner_id', $owner->id)->count() : 0,
-        ],
+                'stats' => [
+                    'my_pets' => $owner ? Pet::where('owner_id', $owner->id)->count() : 0,
+                    'my_appointments' => $owner ? Appointment::where('owner_id', $owner->id)->count() : 0,
+                    'my_invoices' => $owner ? Invoice::where('owner_id', $owner->id)->count() : 0,
+                ],
 
-        'myPets' => $owner
-            ? Pet::where('owner_id', $owner->id)->latest()->get()
-            : collect(),
+                'myPets' => $owner
+                    ? Pet::where('owner_id', $owner->id)->latest()->get()
+                    : collect(),
 
-        'myAppointments' => $owner
-            ? Appointment::with(['pet', 'vet'])->where('owner_id', $owner->id)->latest()->get()
-            : collect(),
+                'myAppointments' => $owner
+                    ? Appointment::with(['pet', 'vet'])
+                        ->where('owner_id', $owner->id)
+                        ->latest()
+                        ->get()
+                    : collect(),
 
-        'myInvoices' => $owner
-            ? Invoice::where('owner_id', $owner->id)->latest()->get()
-            : collect(),
+                'myInvoices' => $owner
+                    ? Invoice::where('owner_id', $owner->id)
+                        ->latest()
+                        ->get()
+                    : collect(),
 
-        'medicalHistory' => $owner
-            ? MedicalRecord::with(['pet', 'appointment', 'vet'])
-                ->whereHas('pet', fn($q) => $q->where('owner_id', $owner->id))
-                ->latest()
-                ->get()
-            : collect(),
-    ]));
-}
+                'medicalHistory' => $owner
+                    ? MedicalRecord::with(['pet', 'appointment', 'vet'])
+                        ->whereHas('pet', function ($q) use ($owner) {
+                            $q->where('owner_id', $owner->id);
+                        })
+                        ->latest()
+                        ->get()
+                    : collect(),
+            ]));
+        }
+
+        abort(403, 'Unauthorized role access');
+    }
 
     private function getAppointmentDateField()
     {
