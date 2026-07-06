@@ -126,16 +126,37 @@ class AppointmentController extends Controller
     }
 
     public function edit(Appointment $appointment)
-    {
+{
+    $user = auth()->user();
+
+    $vets = User::where('role', 'Veterinarian')
+        ->orderBy('name')
+        ->get();
+
+    if ($user->role === 'Pet Owner') {
+        $owner = $user->owner;
+
         return view('appointments.edit', [
             'appointment' => $appointment,
-            'owners'      => Owner::orderBy('full_name')->get(),
-            'pets'        => Pet::orderBy('name')->get(),
-            'vets'        => User::where('role', 'Veterinarian')
-                                 ->orderBy('name')
-                                 ->get(),
+            'isPetOwner' => true,
+            'selectedOwner' => $owner,
+            'owners' => collect([$owner]),
+            'pets' => $owner
+                ? Pet::where('owner_id', $owner->id)->orderBy('name')->get()
+                : collect(),
+            'vets' => $vets,
         ]);
     }
+
+    return view('appointments.edit', [
+        'appointment' => $appointment,
+        'isPetOwner' => false,
+        'selectedOwner' => null,
+        'owners' => Owner::orderBy('full_name')->get(),
+        'pets' => Pet::where('owner_id', $appointment->owner_id)->orderBy('name')->get(),
+        'vets' => $vets,
+    ]);
+}
 
     public function update(Request $request, Appointment $appointment)
     {
