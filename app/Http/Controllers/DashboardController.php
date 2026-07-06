@@ -156,9 +156,11 @@ class DashboardController extends Controller
                 ],
 
                 'myPets' => $owner
-                    ? Pet::where('owner_id', $owner->id)->latest()->get()
-                    : collect(),
-
+    ? Pet::with(['owner', 'species', 'breed', 'appointments', 'medicalRecords'])
+        ->where('owner_id', $owner->id)
+        ->latest()
+        ->get()
+    : collect(),
                 'myAppointments' => $owner
                     ? Appointment::with(['pet', 'vet'])
                         ->where('owner_id', $owner->id)
