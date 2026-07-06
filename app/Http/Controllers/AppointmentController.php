@@ -13,63 +13,172 @@ class AppointmentController extends Controller
     public function index()
     {
         $appointments = Appointment::with(['owner', 'pet', 'vet', 'medicalRecord'])
-    ->latest()
-    ->get();
+            ->latest()
+            ->get();
+
         return view('appointments.index', compact('appointments'));
     }
 
     public function create()
     {
+        $user = auth()->user();
+
+        $vets = User::where('role', 'Veterinarian')
+            ->orderBy('name')
+            ->get();
+
+        // Logged in as Pet Owner
+        if ($user->role === 'Pet Owner') {
+
+            $owner = $user->owner;
+
+            return view('appointments.create', [
+                'isPetOwner'   => true,
+                'selectedOwner'=> $owner,
+                'owners'       => collect([$owner]),
+                'pets'         => $owner
+                    ? Pet::where('owner_id', $owner->id)->orderBy('name')->get()
+                    : collect(),
+                'vets'         => $vets,
+            ]);
+        }
+
+        // Administrator / Receptionist / Veterinarian
         return view('appointments.create', [
-            'owners' => Owner::orderBy('full_name')->get(),
-            'pets' => Pet::orderBy('name')->get(),
-            'vets' => User::orderBy('name')->get(),
+            'isPetOwner'    => false,
+            'selectedOwner' => null,
+            'owners'        => Owner::orderBy('full_name')->get(),
+            'pets'          => collect(),
+            'vets'          => $vets,
         ]);
     }
 
     public function store(Request $request)
     {
-        Appointment::create($request->validate([
-            'owner_id' => 'required',
-            'pet_id' => 'required',
-            'vet_id' => 'nullable',
-            'scheduled_at' => 'required|date',
-            'reason' => 'nullable|string',
-            'status' => 'nullable|string',
-            'notes' => 'nullable|string',
-        ]));
+        $user = auth()->user();
 
-        return redirect()->route('appointments.index')->with('success', 'Appointment booked.');
+        $data = $request->validate([
+            'owner_id'     => 'required|exists:owners,id',
+            'pet_id'       => 'required|exists:pets,id',
+            'vet_id'       => 'nullable|exists:users,id',
+            'scheduled_at' => 'required|date',
+            'reason'       => 'nullable|string',
+            'status'       => 'nullable|string',
+            'notes'        => 'nullable|string',
+        ]);
+
+        if ($user->role === 'Pet Owner') {
+
+            $owner = $user->owner;
+
+            if (!$owner) {
+                return back()->withErrors([
+                    'owner_id' => 'Owner profile not found.'
+                ])->withInput();
+            }
+
+            // Force logged-in owner
+            $data['owner_id'] = $owner->id;
+
+            // Verify selected pet belongs to owner
+            $petExists = Pet::where('id', $data['pet_id'])
+                ->where('owner_id', $owner->id)
+                ->exists();
+
+            if (!$petExists) {
+                return back()->withErrors([
+                    'pet_id' => 'You can only book appointments for your own pets.'
+                ])->withInput();
+            }
+        } else {
+
+            // Admin/Receptionist validation
+            $petExists = Pet::where('id', $data['pet_id'])
+                ->where('owner_id', $data['owner_id'])
+                ->exists();
+
+            if (!$petExists) {
+                return back()->withErrors([
+                    'pet_id' => 'Selected pet does not belong to the selected owner.'
+                ])->withInput();
+            }
+        }
+
+        // Vet validation
+        if (!empty($data['vet_id'])) {
+
+            $validVet = User::where('id', $data['vet_id'])
+                ->where('role', 'Veterinarian')
+                ->exists();
+
+            if (!$validVet) {
+                return back()->withErrors([
+                    'vet_id' => 'Please select a valid veterinarian.'
+                ])->withInput();
+            }
+        }
+
+        Appointment::create($data);
+
+        return redirect()
+            ->route('appointments.index')
+            ->with('success', 'Appointment booked successfully.');
     }
 
     public function edit(Appointment $appointment)
     {
         return view('appointments.edit', [
             'appointment' => $appointment,
-            'owners' => Owner::orderBy('full_name')->get(),
-            'pets' => Pet::orderBy('name')->get(),
-            'vets' => User::orderBy('name')->get(),
+            'owners'      => Owner::orderBy('full_name')->get(),
+            'pets'        => Pet::orderBy('name')->get(),
+            'vets'        => User::where('role', 'Veterinarian')
+                                 ->orderBy('name')
+                                 ->get(),
         ]);
     }
 
     public function update(Request $request, Appointment $appointment)
     {
-        $appointment->update($request->validate([
-            'owner_id' => 'required',
-            'pet_id' => 'required',
-            'vet_id' => 'nullable',
+        $data = $request->validate([
+            'owner_id'     => 'required|exists:owners,id',
+            'pet_id'       => 'required|exists:pets,id',
+            'vet_id'       => 'nullable|exists:users,id',
             'scheduled_at' => 'required|date',
-            'reason' => 'nullable|string',
-            'status' => 'nullable|string',
-            'notes' => 'nullable|string',
-        ]));
+            'reason'       => 'nullable|string',
+            'status'       => 'nullable|string',
+            'notes'        => 'nullable|string',
+        ]);
 
-        return redirect()->route('appointments.index')->with('success', 'Appointment updated.');
+        $petExists = Pet::where('id', $data['pet_id'])
+            ->where('owner_id', $data['owner_id'])
+            ->exists();
+
+        if (!$petExists) {
+            return back()->withErrors([
+                'pet_id' => 'Selected pet does not belong to the selected owner.'
+            ])->withInput();
+        }
+
+        $appointment->update($data);
+
+        return redirect()
+            ->route('appointments.index')
+            ->with('success', 'Appointment updated successfully.');
+    }
+
+    public function petsByOwner(Owner $owner)
+    {
+        return response()->json(
+            Pet::where('owner_id', $owner->id)
+                ->orderBy('name')
+                ->get(['id', 'name'])
+        );
     }
 
     public function destroy(Appointment $appointment)
     {
         $appointment->delete();
-        return back()->with('success', 'Appointment deleted.');
+
+        return back()->with('success', 'Appointment deleted successfully.');
     }
 }
