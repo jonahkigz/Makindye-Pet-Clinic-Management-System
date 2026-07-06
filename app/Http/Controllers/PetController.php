@@ -31,17 +31,17 @@ class PetController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->role === 'Pet Owner') {
-            $owner = $user->owner;
+       if ($user->role === 'Pet Owner') {
+    $owner = $user->owner;
 
-            return view('pets.create', [
-                'isPetOwner' => true,
-                'selectedOwner' => $owner,
-                'owners' => collect([$owner]),
-                'species' => Species::orderBy('name')->get(),
-                'breeds' => Breed::orderBy('name')->get(),
-            ]);
-        }
+    return view('pets.create', [
+        'isPetOwner' => true,
+        'selectedOwner' => $owner,
+        'owners' => $owner ? collect([$owner]) : collect(),
+        'species' => Species::orderBy('name')->get(),
+        'breeds' => Breed::orderBy('name')->get(),
+    ]);
+}
 
         return view('pets.create', [
             'isPetOwner' => false,

@@ -12,50 +12,50 @@
         @csrf
 
         {{-- OWNER --}}
-        <div>
-            <label class="block mb-2 font-medium text-gray-700">
-                Owner
-            </label>
+<div>
+    <label class="block mb-2 font-medium text-gray-700">
+        Owner
+    </label>
 
-            @if($isPetOwner && $selectedOwner)
+    @if($isPetOwner && $selectedOwner)
 
-                <input type="hidden"
-                       name="owner_id"
-                       value="{{ $selectedOwner->id }}">
+        <input type="hidden" name="owner_id" value="{{ $selectedOwner->id }}">
 
-                <input type="text"
-                       value="{{ $selectedOwner->full_name }}"
-                       class="w-full rounded-xl border-gray-300 bg-gray-100"
-                       readonly>
+        <input type="text"
+               value="{{ $selectedOwner->full_name }}"
+               class="w-full rounded-xl border-gray-300 bg-gray-100"
+               readonly>
 
-            @else
+    @elseif($isPetOwner && !$selectedOwner)
 
-                <select name="owner_id"
-                        class="w-full rounded-xl border-gray-300"
-                        required>
-
-                    <option value="">Select Owner</option>
-
-                    @foreach($owners as $owner)
-
-                        <option value="{{ $owner->id }}"
-                            {{ old('owner_id') == $owner->id ? 'selected' : '' }}>
-
-                            {{ $owner->full_name }}
-
-                        </option>
-
-                    @endforeach
-
-                </select>
-
-            @endif
-
-            @error('owner_id')
-                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-            @enderror
-
+        <div class="bg-red-50 text-red-700 p-4 rounded-xl">
+            Your pet owner profile is missing. Please contact the administrator to link your user account to a pet owner profile.
         </div>
+
+    @else
+
+        <select name="owner_id"
+                class="w-full rounded-xl border-gray-300"
+                required>
+
+            <option value="">Select Owner</option>
+
+            @foreach($owners as $owner)
+                @if($owner)
+                    <option value="{{ $owner->id }}" {{ old('owner_id') == $owner->id ? 'selected' : '' }}>
+                        {{ $owner->full_name }}
+                    </option>
+                @endif
+            @endforeach
+
+        </select>
+
+    @endif
+
+    @error('owner_id')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+    @enderror
+</div>
 
         {{-- PET NAME --}}
         <div>
