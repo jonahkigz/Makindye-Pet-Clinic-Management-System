@@ -9,14 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+public function up(): void
 {
-    Schema::create('breeds', function (Blueprint $table) {
-        $table->id();
-        $table->foreignId('species_id')->constrained('species')->cascadeOnDelete();
-        $table->string('name');
-        $table->timestamps();
-    });
+    if (!Schema::hasTable('breeds')) {
+        Schema::create('breeds', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('species_id')->constrained('species')->cascadeOnDelete();
+            $table->string('name');
+            $table->timestamps();
+        });
+    }
 }
 
 public function down(): void
