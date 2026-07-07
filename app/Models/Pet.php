@@ -15,6 +15,9 @@ class Pet extends Model
         'date_of_birth',
         'color',
         'weight',
+        'species_id',
+        'breed_id',
+        'date_of_birth',
     ];
 
     public function owner()
@@ -41,4 +44,5 @@ class Pet extends Model
     {
         return $this->hasMany(MedicalRecord::class);
     }
+    
 }
