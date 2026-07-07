@@ -13,11 +13,7 @@
     <div class="text-gray-700 font-medium">
     👤 {{ $user->name ?? 'Guest' }}
 
-    @if(!empty($role))
-        <span class="text-gray-500 font-normal">
-            | {{ $role }}
-        </span>
-    @endif
+    <p class="text-red-600 font-bold">TEST ROLE AREA</p>
 </div>
 
     <form method="POST" action="{{ route('logout') }}">
