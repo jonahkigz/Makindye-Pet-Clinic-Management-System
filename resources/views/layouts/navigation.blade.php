@@ -11,14 +11,14 @@
 <div class="flex gap-4 items-center">
 
     <div class="text-gray-700 font-medium">
-        👤 {{ $user->name ?? 'Guest' }}
+    👤 {{ $user->name ?? 'Guest' }}
 
-        @if($role)
-            <span class="text-gray-400 font-normal">
-                | {{ $role }}
-            </span>
-        @endif
-    </div>
+    @if(!empty($role))
+        <span class="text-gray-500 font-normal">
+            | {{ $role }}
+        </span>
+    @endif
+</div>
 
     <form method="POST" action="{{ route('logout') }}">
         @csrf
