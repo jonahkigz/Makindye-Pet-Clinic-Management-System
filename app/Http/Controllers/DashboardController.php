@@ -59,7 +59,7 @@ class DashboardController extends Controller
                     'registered_pets' => Pet::count(),
                     'owners' => Owner::count(),
                     'users' => User::count(),
-                    'medical_records' => MedicalRecord::count(),
+                    'medical-records' => MedicalRecord::count(),
                     'products' => Product::count(),
                     'low_stock' => Product::whereColumn('quantity', '<=', 'reorder_level')->count(),
                     'monthly_revenue' => Payment::whereMonth('created_at', now()->month)->sum('amount'),
@@ -99,7 +99,7 @@ class DashboardController extends Controller
                     'today_appointments' => Appointment::whereDate($dateField, today())->count(),
                     'total_appointments' => Appointment::count(),
                     'total_patients' => Pet::count(),
-                    'medical_records' => MedicalRecord::count(),
+                    'medical-records' => MedicalRecord::count(),
                 ],
 
                 'appointments' => Appointment::with(['pet', 'owner', 'vet'])

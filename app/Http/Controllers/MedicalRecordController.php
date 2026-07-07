@@ -42,7 +42,7 @@ class MedicalRecordController extends Controller
 
     public function create()
     {
-        return view('medical_records.create', [
+        return view('medical-records.create', [
             'pets' => Pet::orderBy('name')->get(),
             'appointments' => Appointment::latest()->get(),
             'vets' => User::orderBy('name')->get(),
@@ -77,7 +77,7 @@ class MedicalRecordController extends Controller
 
     public function edit(MedicalRecord $medical_record)
     {
-        return view('medical_records.edit', [
+        return view('medical-records.edit', [
             'record' => $medical_record,
             'pets' => Pet::orderBy('name')->get(),
             'appointments' => Appointment::latest()->get(),
@@ -109,7 +109,7 @@ class MedicalRecordController extends Controller
 {
     $appointment->load(['pet', 'owner', 'vet']);
 
-   return view('medical_records.create', [
+   return view('medical-records.create', [
     'appointment' => $appointment,
     'pets' => Pet::orderBy('name')->get(),
     'appointments' => Appointment::latest()->get(),
@@ -120,7 +120,8 @@ class MedicalRecordController extends Controller
 {
     $medical_record->load(['pet.owner', 'appointment', 'vet']);
 
-    return view('medical_records.show', [
+    return view('
+    .show', [
         'record' => $medical_record,
     ]);
 }
