@@ -18,16 +18,11 @@
         </div>
 
         <div>
-            <label class="block mb-1">Appointment</label>
-            <select name="appointment_id" class="w-full border rounded p-2">
-                <option value="">None</option>
-                @foreach($appointments as $appointment)
-                    <option value="{{ $appointment->id }}">
-                        {{ $appointment->scheduled_at }} - {{ $appointment->pet->name ?? '' }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
+    <label class="block mb-1">Appointment</label>
+    <select name="appointment_id" id="appointment_id" class="w-full border rounded p-2">
+        <option value="">None</option>
+    </select>
+</div>
 
         <h2 class="font-bold text-green-800 mt-4">Invoice Items</h2>
 
@@ -62,6 +57,38 @@
 <script>
 const services = @json($services);
 const products = @json($products);
+const appointments = @json($appointments);
+
+const ownerSelect = document.querySelector('select[name="owner_id"]');
+const appointmentSelect = document.getElementById('appointment_id');
+
+ownerSelect.addEventListener('change', function () {
+    loadOwnerAppointments(this.value);
+});
+
+function loadOwnerAppointments(ownerId) {
+    appointmentSelect.innerHTML = '<option value="">None</option>';
+
+    if (!ownerId) {
+        return;
+    }
+
+    const filteredAppointments = appointments.filter(appointment => {
+        return appointment.owner_id == ownerId ||
+               appointment.pet?.owner_id == ownerId;
+    });
+
+    filteredAppointments.forEach(appointment => {
+        const petName = appointment.pet ? appointment.pet.name : 'Pet';
+        const date = appointment.scheduled_at ?? 'No date';
+
+        appointmentSelect.innerHTML += `
+            <option value="${appointment.id}">
+                ${date} - ${petName}
+            </option>
+        `;
+    });
+}
 
 function loadItems(typeSelect) {
     const row = typeSelect.closest('.item-row');
