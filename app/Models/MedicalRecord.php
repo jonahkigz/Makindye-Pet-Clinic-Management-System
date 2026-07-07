@@ -30,4 +30,6 @@ class MedicalRecord extends Model
     {
         return $this->belongsTo(User::class, 'vet_id');
     }
+
+
 }
