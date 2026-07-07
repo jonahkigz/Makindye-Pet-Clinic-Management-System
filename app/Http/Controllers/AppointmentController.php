@@ -10,14 +10,41 @@ use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
-    public function index()
-    {
-        $appointments = Appointment::with(['owner', 'pet', 'vet', 'medicalRecord'])
-            ->latest()
-            ->get();
+    public function index(Request $request)
+{
+    $user = auth()->user();
 
-        return view('appointments.index', compact('appointments'));
+    $appointments = Appointment::with([
+        'owner',
+        'pet.owner',
+        'vet',
+        'medicalRecord'
+    ]);
+
+    if ($user->role === 'Veterinarian') {
+
+        switch ($request->filter) {
+
+            case 'my':
+                $appointments->where('vet_id', $user->id);
+                break;
+
+            case 'unassigned':
+                $appointments->whereNull('vet_id');
+                break;
+
+            default:
+                // Show all appointments (assigned and unassigned)
+                break;
+        }
     }
+
+    $appointments = $appointments
+        ->latest()
+        ->get();
+
+    return view('appointments.index', compact('appointments'));
+}
 
     public function create()
     {

@@ -27,7 +27,7 @@
     </p>
 </a>
 
-<a href="{{ route('appointments.index') }}"
+<a href="{{ route('appointments.index', ['filter' => 'my']) }}"
    class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
     <p class="text-gray-500 text-sm">My Appointments</p>
     <h2 class="text-3xl font-bold text-blue-700 mt-2">
@@ -38,14 +38,14 @@
     </p>
 </a>
 
-<a href="{{ route('appointments.index') }}"
+<a href="{{ route('appointments.index', ['filter' => 'unassigned']) }}"
    class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
-    <p class="text-gray-500 text-sm">Unassigned Appointments</p>
+    <p class="text-gray-500 text-sm">Unassigned</p>
     <h2 class="text-3xl font-bold text-orange-700 mt-2">
         {{ $stats['unassigned_appointments'] ?? 0 }}
     </h2>
     <p class="text-xs text-gray-400 mt-1">
-        Available consultations
+        Available consultations awaiting assignment
     </p>
 </a>
     </div>
