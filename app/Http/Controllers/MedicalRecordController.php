@@ -116,13 +116,16 @@ class MedicalRecordController extends Controller
     'vets' => User::orderBy('name')->get(),
 ]);
 }
-    public function show(MedicalRecord $medical_record)
+   public function show(MedicalRecord $medical_record)
 {
-    $medical_record->load(['pet.owner', 'appointment', 'vet']);
+    $medical_record->load([
+        'pet.owner',
+        'appointment',
+        'vet'
+    ]);
 
-    return view('
-    .show', [
-        'record' => $medical_record,
+    return view('medical-records.show', [
+        'medicalRecord' => $medical_record,
     ]);
 }
 public function print(MedicalRecord $medicalRecord)
