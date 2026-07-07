@@ -1,80 +1,148 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="p-6">
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold text-green-800">Appointments</h1>
-        <a href="{{ route('appointments.create') }}" class="bg-green-700 text-white px-4 py-2 rounded-lg">Book Appointment</a>
+<div class="space-y-6">
+
+    {{-- HEADER --}}
+    <div class="bg-gradient-to-r from-emerald-700 to-green-500 text-white p-6 rounded-2xl shadow">
+        <div class="flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold">Appointments</h1>
+                <p class="text-green-100 mt-1">
+                    Manage consultations, visits, and patient care schedules.
+                </p>
+            </div>
+
+            <a href="{{ route('appointments.create') }}"
+               class="bg-white text-emerald-700 px-5 py-2 rounded-xl font-semibold shadow">
+                Book Appointment
+            </a>
+        </div>
     </div>
 
     @if(session('success'))
-        <div class="bg-green-100 text-green-800 p-3 rounded mb-4">{{ session('success') }}</div>
+        <div class="bg-green-100 text-green-800 p-4 rounded-xl">
+            {{ session('success') }}
+        </div>
     @endif
 
-    <div class="bg-white shadow rounded-lg overflow-hidden">
-        <table class="w-full">
-            <thead class="bg-green-700 text-white">
-                <tr>
-                    <th class="p-3 text-left">Date/Time</th>
-                    <th class="p-3 text-left">Owner</th>
-                    <th class="p-3 text-left">Pet</th>
-                    <th class="p-3 text-left">Vet</th>
-                    <th class="p-3 text-left">Status</th>
-                    <th class="p-3 text-right">Actions    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($appointments as $appointment)
-                    <tr class="border-b">
-                        <td class="p-3">{{ $appointment->scheduled_at }}</td>
-                        <td class="p-3">{{ $appointment->owner->full_name ?? 'N/A' }}</td>
-                        <td class="p-3">{{ $appointment->pet->name ?? 'N/A' }}</td>
-                        <td class="p-3">{{ $appointment->vet->name ?? 'N/A' }}</td>
-                        <td class="p-3">{{ $appointment->status }}</td>
-                        <td class="p-3 text-right">
+    {{-- APPOINTMENT CARDS --}}
+    <div class="bg-white p-6 rounded-2xl shadow">
 
-    @if($appointment->status != 'Completed')
+        <div class="flex justify-between items-center mb-5">
+            <div>
+                <h2 class="text-xl font-bold text-gray-800">Appointment List</h2>
+                <p class="text-sm text-gray-500">Recent and upcoming clinic appointments</p>
+            </div>
 
-        <a href="{{ route('appointments.medical-record.create', $appointment) }}"
-           class="text-emerald-600 font-semibold mr-3">
-            Complete Visit
-        </a>
+            <span class="bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold">
+                {{ $appointments->count() }} Total
+            </span>
+        </div>
 
-    @elseif($appointment->medicalRecord)
+        <div class="space-y-4">
 
-        <a href="{{ route('medical-records.show', $appointment->medicalRecord) }}"
-           class="text-green-700 font-semibold mr-3">
-            View Report
-        </a>
+            @forelse($appointments as $appointment)
 
-    @endif
+                <div class="border rounded-2xl p-5 bg-gray-50 hover:bg-white hover:shadow transition">
 
-    <a href="{{ route('appointments.edit', $appointment) }}"
-       class="text-blue-600">
-        Edit
-    </a>
+                    <div class="flex justify-between items-start gap-4">
 
-    <form action="{{ route('appointments.destroy', $appointment) }}"
-          method="POST"
-          class="inline">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">
+                                🐾 {{ $appointment->pet->name ?? 'N/A' }}
+                            </h3>
 
-        @csrf
-        @method('DELETE')
+                            <p class="text-sm text-gray-500 mt-1">
+                                Owner:
+                                {{ $appointment->owner->full_name ?? $appointment->pet->owner->full_name ?? 'N/A' }}
+                            </p>
 
-        <button class="text-red-600 ml-3"
-                onclick="return confirm('Delete appointment?')">
-            Delete
-        </button>
+                            <p class="text-sm text-gray-500">
+                                Vet:
+                                {{ $appointment->vet->name ?? 'Unassigned' }}
+                            </p>
 
-    </form>
+                            <p class="text-sm text-gray-500">
+                                Date:
+                                {{ $appointment->scheduled_at
+                                    ? \Carbon\Carbon::parse($appointment->scheduled_at)->format('d M Y, h:i A')
+                                    : 'Not scheduled' }}
+                            </p>
+                        </div>
 
-</td>
-                    </tr>
-                @empty
-                    <tr><td colspan="6" class="p-6 text-center text-gray-500">No appointments yet.</td></tr>
-                @endforelse
-            </tbody>
-        </table>
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold
+                            @if(($appointment->status ?? '') === 'Completed')
+                                bg-green-100 text-green-700
+                            @elseif(($appointment->status ?? '') === 'Cancelled')
+                                bg-red-100 text-red-700
+                            @elseif(($appointment->status ?? '') === 'In Consultation')
+                                bg-blue-100 text-blue-700
+                            @else
+                                bg-yellow-100 text-yellow-700
+                            @endif">
+                            {{ $appointment->status ?? 'Pending' }}
+                        </span>
+
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 mt-5">
+
+                        @if($appointment->status != 'Completed')
+                            <a href="{{ route('appointments.medical-record.create', $appointment) }}"
+                               class="px-4 py-2 rounded-xl bg-emerald-600 text-white text-sm">
+                                Complete Visit
+                            </a>
+                        @elseif($appointment->medicalRecord)
+                            <a href="{{ route('medical-records.show', $appointment->medicalRecord) }}"
+                               class="px-4 py-2 rounded-xl bg-green-700 text-white text-sm">
+                                View Report
+                            </a>
+                        @endif
+
+                        <a href="{{ route('appointments.edit', $appointment) }}"
+                           class="px-4 py-2 rounded-xl bg-blue-600 text-white text-sm">
+                            Edit
+                        </a>
+
+                        @if($appointment->pet)
+                            <a href="{{ route('medical-records.index') }}?pet_id={{ $appointment->pet->id }}"
+                               class="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 text-sm">
+                                History
+                            </a>
+                        @endif
+
+                        <form action="{{ route('appointments.destroy', $appointment) }}"
+                              method="POST"
+                              onsubmit="return confirm('Delete appointment?')">
+                            @csrf
+                            @method('DELETE')
+
+                            <button class="px-4 py-2 rounded-xl bg-red-100 text-red-700 text-sm">
+                                Delete
+                            </button>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            @empty
+
+                <div class="text-center bg-gray-50 rounded-2xl p-8">
+                    <p class="text-gray-500 mb-4">No appointments yet.</p>
+
+                    <a href="{{ route('appointments.create') }}"
+                       class="inline-block px-5 py-2 rounded-xl bg-emerald-600 text-white">
+                        Book First Appointment
+                    </a>
+                </div>
+
+            @endforelse
+
+        </div>
+
     </div>
+
 </div>
 @endsection
