@@ -106,7 +106,7 @@
                         </a>
 
                         @if($appointment->pet)
-                            <a href="{{ route('medical-records.index') }}?pet_id={{ $appointment->pet->id }}"
+                            <a href="{{ route('medical-records.history', $appointment->pet) }}"
                                class="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 text-sm">
                                 History
                             </a>
