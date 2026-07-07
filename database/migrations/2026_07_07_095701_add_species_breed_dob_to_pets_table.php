@@ -21,10 +21,12 @@ public function up(): void
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
-        Schema::table('pets', function (Blueprint $table) {
-            //
-        });
-    }
+public function down(): void
+{
+    Schema::table('pets', function (Blueprint $table) {
+        $table->dropForeign(['species_id']);
+        $table->dropForeign(['breed_id']);
+        $table->dropColumn(['species_id', 'breed_id', 'date_of_birth']);
+    });
+}
 };
