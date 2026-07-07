@@ -23,4 +23,3 @@ public function down(): void
     Schema::dropIfExists('species');
 }
 };
-yes
