@@ -91,28 +91,48 @@ class DashboardController extends Controller
         */
         if ($role === 'Veterinarian') {
 
-            $dateField = $this->getAppointmentDateField();
+    $vetId = $user->id;
 
-            return view('dashboard.vet', array_merge($baseData, [
+    return view('dashboard.vet', array_merge($baseData, [
 
-                'stats' => [
-                    'today_appointments' => Appointment::whereDate($dateField, today())->count(),
-                    'total_appointments' => Appointment::count(),
-                    'total_patients' => Pet::count(),
-                    'medical-records' => MedicalRecord::count(),
-                ],
+        'stats' => [
+            'all_appointments' => Appointment::count(),
 
-                'appointments' => Appointment::with(['pet', 'owner', 'vet'])
-                    ->whereDate($dateField, today())
-                    ->latest()
-                    ->get(),
+            'unassigned_appointments' => Appointment::whereNull('vet_id')->count(),
 
-                'medicalRecords' => MedicalRecord::with(['pet', 'appointment', 'vet'])
-                    ->latest()
-                    ->take(10)
-                    ->get(),
-            ]));
-        }
+            'my_appointments' => Appointment::where('vet_id', $vetId)->count(),
+
+            'pending_my_appointments' => Appointment::where('vet_id', $vetId)
+                ->whereIn('status', ['Pending', 'Scheduled'])
+                ->count(),
+
+            'completed_my_appointments' => Appointment::where('vet_id', $vetId)
+                ->where('status', 'Completed')
+                ->count(),
+
+            'total_records' => MedicalRecord::where('vet_id', $vetId)->count(),
+
+            'monthly_records' => MedicalRecord::where('vet_id', $vetId)
+                ->whereMonth('created_at', now()->month)
+                ->whereYear('created_at', now()->year)
+                ->count(),
+
+            'total_patients' => Pet::whereHas('appointments', function ($query) use ($vetId) {
+                $query->where('vet_id', $vetId);
+            })->distinct()->count(),
+        ],
+
+        'appointments' => Appointment::with(['pet.owner', 'owner', 'vet'])
+            ->where(function ($query) use ($vetId) {
+                $query->where('vet_id', $vetId)
+                      ->orWhereNull('vet_id');
+            })
+            ->latest()
+            ->take(8)
+            ->get(),
+
+    ]));
+}
 
         /*
         |--------------------------------------------------------------------------

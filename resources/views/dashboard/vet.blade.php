@@ -17,32 +17,37 @@
     <div class="grid md:grid-cols-3 gap-4">
 
         <a href="{{ route('appointments.index') }}"
-           class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
-            <p class="text-gray-500 text-sm">Today’s Appointments</p>
-            <h2 class="text-3xl font-bold text-emerald-700 mt-2">
-                {{ $stats['today_appointments'] ?? 0 }}
-            </h2>
-            <p class="text-xs text-gray-400 mt-1">Scheduled consultations today</p>
-        </a>
+   class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+    <p class="text-gray-500 text-sm">Appointments</p>
+    <h2 class="text-3xl font-bold text-emerald-700 mt-2">
+        {{ $stats['all_appointments'] ?? 0 }}
+    </h2>
+    <p class="text-xs text-gray-400 mt-1">
+        Includes all assigned and unassigned appointments
+    </p>
+</a>
 
-        <a href="{{ route('medical-records.index') }}"
-           class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
-            <p class="text-gray-500 text-sm">Medical Records</p>
-            <h2 class="text-3xl font-bold text-blue-700 mt-2">
-                {{ $stats['total_records'] ?? 0 }}
-            </h2>
-            <p class="text-xs text-gray-400 mt-1">Clinical reports recorded</p>
-        </a>
+<a href="{{ route('appointments.index') }}"
+   class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+    <p class="text-gray-500 text-sm">My Appointments</p>
+    <h2 class="text-3xl font-bold text-blue-700 mt-2">
+        {{ $stats['my_appointments'] ?? 0 }}
+    </h2>
+    <p class="text-xs text-gray-400 mt-1">
+        Appointments assigned to you
+    </p>
+</a>
 
-        <a href="{{ route('pets.index') }}"
-           class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
-            <p class="text-gray-500 text-sm">Registered Patients</p>
-            <h2 class="text-3xl font-bold text-lime-700 mt-2">
-                {{ $stats['total_patients'] ?? 0 }}
-            </h2>
-            <p class="text-xs text-gray-400 mt-1">Pets under clinic care</p>
-        </a>
-
+<a href="{{ route('appointments.index') }}"
+   class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+    <p class="text-gray-500 text-sm">Unassigned Appointments</p>
+    <h2 class="text-3xl font-bold text-orange-700 mt-2">
+        {{ $stats['unassigned_appointments'] ?? 0 }}
+    </h2>
+    <p class="text-xs text-gray-400 mt-1">
+        Available consultations
+    </p>
+</a>
     </div>
 
     {{-- QUICK ACTIONS --}}
