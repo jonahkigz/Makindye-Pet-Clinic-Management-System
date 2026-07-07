@@ -68,7 +68,8 @@ Route::middleware(['auth'])->group(function () {
 Route::resource('medical-records', MedicalRecordController::class);
 Route::get('/owners/{owner}/pets', [AppointmentController::class, 'petsByOwner'])
     ->name('owners.pets');
-
+Route::get('/medical-records/{medicalRecord}/print', [MedicalRecordController::class, 'print'])
+    ->name('medical-records.print');
 });
 
 require __DIR__.'/auth.php';

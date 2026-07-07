@@ -10,11 +10,35 @@ use Illuminate\Http\Request;
 
 class MedicalRecordController extends Controller
 {
-    public function index()
-    {
-        $records = MedicalRecord::with(['pet', 'appointment', 'vet'])->latest()->get();
-        return view('medical_records.index', compact('records'));
+  public function index(Request $request)
+{
+    $user = auth()->user();
+
+    $petId = $request->query('pet_id');
+
+    if ($user->role === 'Pet Owner') {
+        $owner = $user->owner;
+
+        abort_if(!$owner, 403);
+
+        $pet = Pet::where('owner_id', $owner->id)
+            ->where('id', $petId)
+            ->firstOrFail();
+
+        $appointments = Appointment::with(['pet', 'vet', 'medicalRecord'])
+            ->where('pet_id', $pet->id)
+            ->latest()
+            ->get();
+
+        return view('medical-records.owner-history', compact('pet', 'appointments'));
     }
+
+    $records = MedicalRecord::with(['pet.owner', 'appointment', 'vet'])
+        ->latest()
+        ->get();
+
+    return view('medical-records.index', compact('records'));
+}
 
     public function create()
     {
@@ -99,5 +123,11 @@ class MedicalRecordController extends Controller
     return view('medical_records.show', [
         'record' => $medical_record,
     ]);
+}
+public function print(MedicalRecord $medicalRecord)
+{
+    $medicalRecord->load(['pet.owner', 'appointment', 'vet']);
+
+    return view('medical-records.print', compact('medicalRecord'));
 }
 }
