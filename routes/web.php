@@ -73,7 +73,8 @@ Route::get('/medical-records/{medicalRecord}/print', [MedicalRecordController::c
 Route::get('/my-invoices', [InvoiceController::class, 'myInvoices'])
     ->name('owner.invoices')
     ->middleware('auth');
-
+Route::get('/pets/{pet}/history', [MedicalRecordController::class, 'history'])
+    ->name('medical-records.history');
 });
 
 require __DIR__.'/auth.php';
