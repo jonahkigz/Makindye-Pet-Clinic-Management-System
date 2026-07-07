@@ -84,6 +84,23 @@ class InvoiceController extends Controller
         $invoice->load(['owner', 'appointment.pet', 'items', 'payments']);
         return view('invoices.show', compact('invoice'));
     }
+    public function myInvoices()
+{
+    $user = auth()->user();
+
+    abort_if($user->role !== 'Pet Owner', 403);
+
+    $owner = $user->owner;
+
+    abort_if(!$owner, 403);
+
+    $invoices = Invoice::with(['owner', 'appointment.pet', 'items', 'payments'])
+        ->where('owner_id', $owner->id)
+        ->latest()
+        ->get();
+
+    return view('invoices.owner-invoices', compact('owner', 'invoices'));
+}
 
     public function destroy(Invoice $invoice)
     {

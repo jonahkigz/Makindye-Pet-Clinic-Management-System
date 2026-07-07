@@ -5,7 +5,7 @@
 <div class="space-y-6">
 
     {{-- HEADER --}}
-    <div class="bg-gradient-to-r from-emerald-600 to-green-500 text-white p-6 rounded-2xl shadow">
+    <div class="bg-gradient-to-r from-emerald-600 to-green-500 text-white p-6 h-30 rounded-2xl shadow">
         <h1 class="text-3xl font-bold">
             Welcome back, {{ auth()->user()->name }} 👋
         </h1>

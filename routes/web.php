@@ -70,6 +70,10 @@ Route::get('/owners/{owner}/pets', [AppointmentController::class, 'petsByOwner']
     ->name('owners.pets');
 Route::get('/medical-records/{medicalRecord}/print', [MedicalRecordController::class, 'print'])
     ->name('medical-records.print');
+Route::get('/my-invoices', [InvoiceController::class, 'myInvoices'])
+    ->name('owner.invoices')
+    ->middleware('auth');
+
 });
 
 require __DIR__.'/auth.php';

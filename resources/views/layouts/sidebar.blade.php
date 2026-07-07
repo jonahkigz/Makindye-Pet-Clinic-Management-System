@@ -156,10 +156,10 @@
             <span class="ml-4 font-semibold">Book Appointment</span>
         </a>
 
-        <a href="{{ route('appointments.index') }}"
+        <a href="{{ route('owner.invoices') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
-            <span class="text-xl">🩺</span>
-            <span class="ml-4 font-semibold">Medical Reports</span>
+            <span class="text-xl">🧾</span>
+            <span class="ml-4 font-semibold">My Invoices</span>
         </a>
 
     @endif
