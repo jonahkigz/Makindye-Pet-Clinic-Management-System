@@ -60,7 +60,7 @@
             <p class="text-sm text-gray-500 mt-1">Review today’s appointments and patient queue.</p>
         </a>
 
-        <a href="{{ route('medical-records.create') }}"
+        <a href="{{ route('appointments.index') }}"
            class="bg-blue-50 border border-blue-100 p-5 rounded-2xl hover:shadow transition">
             <p class="text-2xl mb-2">📝</p>
             <h3 class="font-bold text-blue-800">Add Medical Report</h3>
