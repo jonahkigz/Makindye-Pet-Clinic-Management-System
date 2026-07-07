@@ -8,6 +8,7 @@ use App\Models\Appointment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+
 class MedicalRecordController extends Controller
 {
   public function index(Request $request)
@@ -139,5 +140,27 @@ class MedicalRecordController extends Controller
     ]);
 
     return view('medical-records.print', compact('medicalRecord'));
+}
+
+public function history(Pet $pet)
+{
+    $pet->load([
+        'owner',
+        'species',
+        'breed'
+    ]);
+
+    $appointments = Appointment::with([
+        'vet',
+        'medicalRecord'
+    ])
+    ->where('pet_id', $pet->id)
+    ->latest()
+    ->get();
+
+    return view('medical-records.owner-history', compact(
+        'pet',
+        'appointments'
+    ));
 }
 }
