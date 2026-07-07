@@ -107,20 +107,19 @@ class DashboardController extends Controller
         ->whereNotIn('status', ['Completed', 'Cancelled'])
         ->count(),
 
-    'pending_my_appointments' => Appointment::where('vet_id', $vetId)
-        ->whereNotIn('status', ['Completed', 'Cancelled'])
-        ->count(),
-
-    'completed_my_appointments' => Appointment::where('vet_id', $vetId)
+    'completed_cases' => Appointment::where('vet_id', $vetId)
         ->where('status', 'Completed')
         ->count(),
 
-    'total_records' => MedicalRecord::where('vet_id', $vetId)->count(),
+    'completed_consultations' => MedicalRecord::where('vet_id', $vetId)
+        ->count(),
 
     'monthly_records' => MedicalRecord::where('vet_id', $vetId)
         ->whereMonth('created_at', now()->month)
         ->whereYear('created_at', now()->year)
         ->count(),
+
+    'total_records' => MedicalRecord::where('vet_id', $vetId)->count(),
 
     'total_patients' => Pet::whereHas('appointments', function ($query) use ($vetId) {
         $query->where('vet_id', $vetId);

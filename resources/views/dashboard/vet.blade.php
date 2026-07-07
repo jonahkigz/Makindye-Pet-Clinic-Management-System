@@ -174,26 +174,25 @@
             <div class="space-y-4">
 
                 <div class="p-4 rounded-xl bg-emerald-50">
-                    <p class="text-sm text-gray-500">Pending Consultations</p>
-                    <p class="text-2xl font-bold text-emerald-700">
-                        {{ $stats['pending_appointments'] ?? 0 }}
-                    </p>
-                </div>
+    <p class="text-sm text-gray-500">Completed Cases</p>
+    <p class="text-2xl font-bold text-emerald-700">
+        {{ $stats['completed_cases'] ?? 0 }}
+    </p>
+</div>
 
-                <div class="p-4 rounded-xl bg-blue-50">
-                    <p class="text-sm text-gray-500">Completed Cases</p>
-                    <p class="text-2xl font-bold text-blue-700">
-                        {{ $stats['completed_appointments'] ?? 0 }}
-                    </p>
-                </div>
+<div class="p-4 rounded-xl bg-blue-50">
+    <p class="text-sm text-gray-500">Completed Consultations</p>
+    <p class="text-2xl font-bold text-blue-700">
+        {{ $stats['completed_consultations'] ?? 0 }}
+    </p>
+</div>
 
-                <div class="p-4 rounded-xl bg-orange-50">
-                    <p class="text-sm text-gray-500">Records This Month</p>
-                    <p class="text-2xl font-bold text-orange-700">
-                        {{ $stats['monthly_records'] ?? 0 }}
-                    </p>
-                </div>
-
+<div class="p-4 rounded-xl bg-orange-50">
+    <p class="text-sm text-gray-500">Records This Month</p>
+    <p class="text-2xl font-bold text-orange-700">
+        {{ $stats['monthly_records'] ?? 0 }}
+    </p>
+</div>
             </div>
 
         </div>
