@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Facades\Auth;
+@endphp
+
 <nav class="bg-white shadow p-4 flex justify-between">
 
     <div>
@@ -10,11 +14,15 @@
 
 <div class="flex gap-4 items-center">
 
+    @auth
     <div class="text-gray-700 font-medium">
-    👤 {{ $user->name ?? 'Guest' }}
+        👤 {{ Auth::user()->name ?? 'Guest' }}
 
-    <p class="text-red-600 font-bold">TEST ROLE AREA</p>
-</div>
+        <span class="text-gray-500 font-normal">
+            | {{ Auth::user()->role ?? 'No Role' }}
+        </span>
+    </div>
+@endauth
 
     <form method="POST" action="{{ route('logout') }}">
         @csrf

@@ -28,7 +28,7 @@
                         </p>
                     </div>
 
-                    <span class="px-3 py-1 rounded-2xl text-xs bg-yellow-100 text-yellow-700">
+                    <span class="px-3 py-1 rounded-2xl text-sm text-purple-900">
                         {{ ucfirst($invoice->status ?? 'unpaid') }}
                     </span>
                 </div>
