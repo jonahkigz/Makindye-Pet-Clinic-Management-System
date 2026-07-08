@@ -5,14 +5,14 @@
     <div class="space-y-6">
 
         {{-- HEADER --}}
-        <div class="bg-black/45 backdrop-blur-md text-white p-6 rounded-2xl shadow-2xl border border-white/20">
-            <h1 class="text-3xl font-bold">
-                Receptionist Dashboard 🧾
-            </h1>
-            <p class="text-green-100 mt-1">
-                Coordinate daily front desk operations, including client registration, appointments, billing, and payments.
-            </p>
-        </div>
+    <div class="bg-gradient-to-r from-emerald-700 to-green-500 text-white p-6 rounded-2xl shadow">
+        <h1 class="text-3xl font-bold">
+            Receptionist Dashboard 🧾
+        </h1>
+        <p class="text-green-100 mt-1">
+            Front desk workspace for owners, pets, bookings, invoices, and payments.
+        </p>
+    </div>
 
         {{-- STATS --}}
         <div class="grid md:grid-cols-4 gap-4">
