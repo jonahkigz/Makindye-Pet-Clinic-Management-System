@@ -132,7 +132,11 @@
             <span class="text-xl">📅</span>
             <span class="ml-4 font-semibold">Appointments</span>
         </a>
-
+        <a href="{{ route('payments.index') }}"
+           class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
+            <span class="text-xl">💳</span>
+            <span class="ml-4 font-semibold">Payments</span>
+        </a>
         <a href="{{ route('invoices.index') }}"
            class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
             <span class="text-xl">🧾</span>

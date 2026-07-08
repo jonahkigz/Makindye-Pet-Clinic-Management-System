@@ -50,7 +50,7 @@
 
         <div class="mt-6">
             <button onclick="window.print()" class="bg-green-700 text-white px-4 py-2 rounded-lg">
-                Print Receipt
+                Print Invoice
             </button>
 
             <a href="{{ route('invoices.index') }}" class="ml-3 text-blue-600">
