@@ -153,10 +153,8 @@ class DashboardController extends Controller
             'today_appointments' => Appointment::whereDate($dateField, today())->count(),
             'pets' => Pet::count(),
             'owners' => Owner::count(),
-
-            'monthly_revenue' => Payment::whereMonth('created_at', now()->month)
-                ->whereYear('created_at', now()->year)
-                ->sum('amount'),
+            'daily_income' => Payment::whereDate('created_at', today())
+             ->sum('amount'),
         ],
 
         'appointments' => Appointment::with(['pet', 'owner', 'vet'])
