@@ -145,26 +145,26 @@ class DashboardController extends Controller
         */
         if ($role === 'Receptionist') {
 
-            $dateField = $this->getAppointmentDateField();
+    $dateField = $this->getAppointmentDateField();
 
-            return view('dashboard.receptionist', array_merge($baseData, [
+    return view('dashboard.receptionist', array_merge($baseData, [
 
-                'stats' => [
-                    'today_appointments' => Appointment::whereDate($dateField, today())->count(),
-                    'pets' => Pet::count(),
-                    'owners' => Owner::count(),
-                ],
+        'stats' => [
+            'today_appointments' => Appointment::whereDate($dateField, today())->count(),
+            'pets' => Pet::count(),
+            'owners' => Owner::count(),
 
-                'appointments' => Appointment::with(['pet', 'owner', 'vet'])
-                    ->whereDate($dateField, today())
-                    ->latest()
-                    ->get(),
+            'monthly_revenue' => Payment::whereMonth('created_at', now()->month)
+                ->whereYear('created_at', now()->year)
+                ->sum('amount'),
+        ],
 
-                    'monthly_revenue' => Payment::whereMonth('created_at', now()->month)
-                    ->whereYear('created_at', now()->year)
-                    ->sum('amount'),
-            ]));
-        }
+        'appointments' => Appointment::with(['pet', 'owner', 'vet'])
+            ->whereDate($dateField, today())
+            ->latest()
+            ->get(),
+    ]));
+}
 
         /*
         |--------------------------------------------------------------------------
