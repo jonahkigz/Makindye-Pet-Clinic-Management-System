@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="min-h-screen bg-cover bg-center bg-no-repeat p-6"
+     style="background-image: url('{{ asset('images/golden_retriever.png') }}');">
 <div class="space-y-6">
 
     {{-- HEADER --}}
@@ -197,6 +199,7 @@
 
         </div>
 
+    </div>
     </div>
 
 </div>

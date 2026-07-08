@@ -4,8 +4,9 @@
 
 <div class="min-h-screen bg-cover bg-center bg-no-repeat p-6 rounded-2xl"
      style="background-image: url('{{ asset('images/loginbg.png') }}');">
-     <div class="min-h-screen bg-black/30 p-6">
 
+     <div class="min-h-screen bg-white/80 backdrop-blur-sm p-6">
+     
     <div class="space-y-6">
 
         {{-- HEADER --}}
@@ -94,9 +95,10 @@
                 <p class="text-sm text-gray-500 mt-1">Bill for products & services.</p>
             </a>
 
-        </div>
 
-    </div>
+        </div>
+         </div>
+
     </div>
 
 </div>
