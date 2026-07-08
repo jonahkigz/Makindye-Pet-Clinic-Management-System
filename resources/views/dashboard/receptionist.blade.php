@@ -4,6 +4,7 @@
 
 <div class="min-h-screen bg-cover bg-center bg-no-repeat p-6 rounded-2xl"
      style="background-image: url('{{ asset('images/loginbg.png') }}');">
+     <div class="min-h-screen bg-black/30 p-6">
 
     <div class="space-y-6">
 
@@ -95,6 +96,7 @@
 
         </div>
 
+    </div>
     </div>
 
 </div>
