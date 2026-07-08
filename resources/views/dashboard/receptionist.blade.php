@@ -9,7 +9,7 @@
             Receptionist Dashboard 🧾
         </h1>
         <p class="text-green-100 mt-1">
-            Front desk workspace for owners, pets, bookings, invoices, and payments.
+        Coordinate daily front desk operations, including client registration, appointments, billing, and payments.
         </p>
     </div>
 
@@ -82,7 +82,7 @@
            class="bg-orange-50 border border-orange-100 p-5 rounded-2xl hover:shadow transition">
             <p class="text-2xl mb-2">🧾</p>
             <h3 class="font-bold text-orange-800">Create Invoice</h3>
-            <p class="text-sm text-gray-500 mt-1">Bill owner for services.</p>
+            <p class="text-sm text-gray-500 mt-1">Bill for products & services.</p>
         </a>
 
     </div>

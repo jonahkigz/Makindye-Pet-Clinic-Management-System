@@ -159,6 +159,10 @@ class DashboardController extends Controller
                     ->whereDate($dateField, today())
                     ->latest()
                     ->get(),
+
+                    'monthly_revenue' => Payment::whereMonth('created_at', now()->month)
+                    ->whereYear('created_at', now()->year)
+                    ->sum('amount'),
             ]));
         }
 
