@@ -64,7 +64,9 @@ Route::middleware(['auth'])->group(function () {
 });
     Route::get('/appointments/{appointment}/medical-record/create', [MedicalRecordController::class, 'createFromAppointment'])
     ->name('appointments.medical-record.create');
-
+Route::get('/appointments/{appointment}/medical-record/create',
+    [MedicalRecordController::class, 'createFromAppointment']
+)->name('appointments.medical-record.create');
 Route::resource('medical-records', MedicalRecordController::class);
 Route::get('/owners/{owner}/pets', [AppointmentController::class, 'petsByOwner'])
     ->name('owners.pets');

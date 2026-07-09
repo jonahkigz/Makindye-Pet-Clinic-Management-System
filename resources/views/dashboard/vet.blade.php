@@ -138,11 +138,6 @@
                             View Appointment
                         </a>
 
-                        <a href="{{ route('medical-records.create') }}?appointment_id={{ $appointment->id }}"
-                           class="px-4 py-2 rounded-xl bg-blue-600 text-white text-sm">
-                            Start Report
-                        </a>
-
                         @if($appointment->pet)
                             <a href="{{ route('medical-records.history', $appointment->pet) }}"
                                class="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 text-sm">
