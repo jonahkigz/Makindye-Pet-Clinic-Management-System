@@ -241,6 +241,13 @@ class AppointmentController extends Controller
     }
     public function show(Appointment $appointment)
 {
+    $appointment->load([
+        'owner',
+        'pet.owner',
+        'vet',
+        'medicalRecord'
+    ]);
+
     return view('appointments.show', compact('appointment'));
 }
 }
