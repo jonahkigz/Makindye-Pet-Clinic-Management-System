@@ -41,10 +41,10 @@ class MedicalRecordController extends Controller
     return view('medical-records.index', compact('records'));
 }
 
-    public function create()
+    public function create(Appointment $appointment)
     {
         $appointment->load(['pet.owner', 'owner', 'vet']);
-        
+
         return view('medical-records.create', [
             'pets' => Pet::orderBy('name')->get(),
             'appointments' => Appointment::latest()->get(),
