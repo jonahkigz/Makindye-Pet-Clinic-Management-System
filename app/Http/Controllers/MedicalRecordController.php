@@ -43,6 +43,8 @@ class MedicalRecordController extends Controller
 
     public function create()
     {
+        $appointment->load(['pet.owner', 'owner', 'vet']);
+        
         return view('medical-records.create', [
             'pets' => Pet::orderBy('name')->get(),
             'appointments' => Appointment::latest()->get(),
