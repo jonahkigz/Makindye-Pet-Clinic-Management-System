@@ -21,10 +21,22 @@ class AppointmentController extends Controller
         'medicalRecord'
     ]);
 
+    if ($user->role === 'Pet Owner') {
+
+        $owner = $user->owner;
+
+        if (!$owner) {
+            return view('appointments.index', [
+                'appointments' => collect()
+            ]);
+        }
+
+        $appointments->where('owner_id', $owner->id);
+    }
+
     if ($user->role === 'Veterinarian') {
 
         switch ($request->filter) {
-
             case 'my':
                 $appointments->where('vet_id', $user->id);
                 break;
@@ -34,18 +46,16 @@ class AppointmentController extends Controller
                 break;
 
             default:
-                // Show all appointments (assigned and unassigned)
                 break;
         }
     }
 
     $appointments = $appointments
-        ->latest()
+        ->latest('scheduled_at')
         ->get();
 
     return view('appointments.index', compact('appointments'));
 }
-
     public function create()
     {
         $user = auth()->user();
