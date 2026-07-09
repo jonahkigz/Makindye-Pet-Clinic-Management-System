@@ -239,4 +239,8 @@ class AppointmentController extends Controller
 
         return back()->with('success', 'Appointment deleted successfully.');
     }
+    public function show(Appointment $appointment)
+{
+    return view('appointments.show', compact('appointment'));
+}
 }
