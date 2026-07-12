@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 🐾 Makindye Pet Clinic Management System (MPCMS)
 
 <p align="center">
