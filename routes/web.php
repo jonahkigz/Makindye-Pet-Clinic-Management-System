@@ -154,7 +154,15 @@ Route::middleware('auth')->group(function () {
     */
 
     
-        Route::resource('users', UserManagementController::class);
+        Route::resource('users', UserManagementController::class)
+    ->middleware(function ($request, $next) {
+
+        if (!$request->user() || $request->user()->role !== 'Administrator') {
+            abort(403, 'Unauthorized access.');
+        }
+
+        return $next($request);
+    });
  
 });
 
