@@ -153,9 +153,9 @@ Route::middleware('auth')->group(function () {
     |
     */
 
-    Route::middleware('role:Administrator')->group(function () {
+    
         Route::resource('users', UserManagementController::class);
-    });
+ 
 });
 
 require __DIR__.'/auth.php';

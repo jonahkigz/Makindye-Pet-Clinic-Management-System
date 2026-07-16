@@ -97,4 +97,14 @@ class UserManagementController extends Controller
             Owner::where('user_id', $user->id)->delete();
         }
     }
+    public function __construct()
+{
+    $this->middleware(function ($request, $next) {
+        if (auth()->user()->role !== 'Administrator') {
+            abort(403, 'Unauthorized access.');
+        }
+
+        return $next($request);
+    });
+}
 }
