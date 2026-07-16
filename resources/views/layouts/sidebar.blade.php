@@ -169,11 +169,43 @@
     @endif
 
     {{-- PROFILE (ALL ROLES) --}}
-    <a href="#"
-       class="group flex items-center px-4 py-3 rounded-xl hover:bg-emerald-400 hover:translate-x-2 transition-all duration-300">
-        <span class="text-xl">⚙️</span>
-        <span class="ml-4 font-semibold">Profile</span>
+    <div class="mt-auto border-t border-white/10 pt-4">
+
+    <a href="{{ route('profile.show') }}"
+       class="flex items-center gap-3 rounded-xl p-3 transition hover:bg-white/10">
+
+        @if(auth()->user()->profile_photo_path)
+            <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}"
+                 alt="{{ auth()->user()->name }}"
+                 class="h-11 w-11 rounded-full border-2 border-white/30 object-cover">
+        @else
+            <div class="flex h-11 w-11 items-center justify-center rounded-full bg-white/20 font-bold text-white">
+                {{ auth()->user()->initials }}
+            </div>
+        @endif
+
+        <div class="min-w-0 flex-1">
+            <p class="truncate font-semibold text-white">
+                {{ auth()->user()->name }}
+            </p>
+
+            <p class="truncate text-xs text-emerald-100">
+                {{ auth()->user()->role }}
+            </p>
+        </div>
+
+        <svg class="h-5 w-5 text-emerald-100"
+             fill="none"
+             stroke="currentColor"
+             viewBox="0 0 24 24">
+            <path stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"/>
+        </svg>
     </a>
+
+</div>
 
     {{-- LOGOUT --}}
     <form method="POST" action="{{ route('logout') }}" class="pt-2">
