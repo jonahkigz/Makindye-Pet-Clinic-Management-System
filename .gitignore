@@ -22,4 +22,4 @@ yarn-error.log
 .vscode
 
 Homestead.json
-Homestead.yaml
+Homestead.yaml/public/storage
